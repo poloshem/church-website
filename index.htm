@@ -135,11 +135,9 @@
             }
         }
 
-        /* Header */
         header { background: #333; color: white; padding: 30px 15px; text-align: center; }
         header img { width: 150px; }
 
-        /* Hero Section */
         .hero { background: #333; height: 300px; position: relative; }
         .hero img { width: 150px; position: absolute; left: 20px; top: 50%; transform: translateY(-50%); }
 
@@ -207,7 +205,6 @@
 
         footer { background: #FFA500; color: white; text-align: center; padding: 20px; }
 
-        /* RESPONSIVE GRID */
         @media (max-width: 1024px) {
             .events-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -380,6 +377,16 @@
             }
         });
     });
+
+    // ✅ Carousel functionality (added only)
+    const slides = document.querySelectorAll(".carousel-slide");
+    let currentIndex = 0;
+
+    setInterval(() => {
+        slides[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add("active");
+    }, 3000);
 </script>
 
 </body>
