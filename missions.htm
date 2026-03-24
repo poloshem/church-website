@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission & Outreach</title>
+
+    <link rel="icon" type="image/x-icon" href="favi.jpg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #333;
+            padding-top: 80px;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(90deg, #0057b7, #007bff);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .navbar img {
+            width: 140px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* HEADER */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('images/mission-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            color: #0057b7;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        /* MISSION CARD */
+        .mission-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mission-card img {
+            width: 40%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .mission-content {
+            padding: 25px;
+            width: 60%;
+        }
+
+        .mission-content h3 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .mission-content p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* ALTERNATE LAYOUT */
+        .reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .mission-card {
+                flex-direction: column;
+            }
+
+            .mission-card img,
+            .mission-content {
+                width: 100%;
+            }
+
+            .mission-card img {
+                height: 220px;
+            }
+        }
+
+        /* FOOTER */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <img src="images/favi.png" alt="Logo">
+
+    <div class="nav-links">
+        <a href="index.htm">Home</a>
+        <a href="mission.htm">Mission</a>
+        <a href="sermons.htm">Sermons</a>
+        <a href="bible.htm">Bible</a>
+        <a href="reg.htm">Membership</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Mission & Outreach</h1>
+    <p>Serving communities and spreading the Gospel with compassion</p>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="section-title">
+        <h2>Our Mission Activities</h2>
+        <p>We are committed to transforming lives through action and faith</p>
+    </div>
+
+    <!-- CARD 1 -->
+    <div class="mission-card">
+        <img src="images/mission1.jpg" alt="Community Outreach">
+        <div class="mission-content">
+            <h3>Community Outreach</h3>
+            <p>
+                We reach out to local communities through food distribution,
+                social support, and acts of kindness aimed at improving livelihoods
+                and demonstrating Christ’s love.
+            </p>
+        </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="mission-card reverse">
+        <img src="images/mission2.jpg" alt="Evangelism">
+        <div class="mission-content">
+            <h3>Evangelism</h3>
+            <p>
+                Through street ministry, crusades, and personal engagement,
+                we actively share the Gospel message with individuals and groups
+                across different regions.
+            </p>
+        </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="mission-card">
+        <img src="images/mission3.jpg" alt="Charity Work">
+        <div class="mission-content">
+            <h3>Charity & Support</h3>
+            <p>
+                We provide assistance to vulnerable members of society through
+                donations, counseling, and structured support programs that uplift
+                individuals and families.
+            </p>
+        </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="mission-card reverse">
+        <img src="images/mission4.jpg" alt="Mission Trips">
+        <div class="mission-content">
+            <h3>Mission Trips</h3>
+            <p>
+                Organized mission trips help us extend our outreach beyond local
+                boundaries, supporting evangelism and community development in
+                other regions.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Dominion Spring International Church. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
