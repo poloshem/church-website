@@ -9,9 +9,13 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --navbar-height: 80px;
+        }
+
         body {
             font-family: 'Agency FB', Arial, sans-serif;
-            padding-top: 200px;
+            padding-top: var(--navbar-height);
             background-color: #f4f4f4;
         }
 
@@ -21,6 +25,7 @@
             top: 0;
             left: 0;
             right: 0;
+            height: var(--navbar-height);
             background: #0066cc;
             z-index: 1000;
             padding: 10px 20px;
@@ -29,23 +34,18 @@
             justify-content: space-between;
         }
 
-        .top-nav .logo img {
-            width: 160px;
+        .logo img {
+            width: 150px;
         }
 
+        /* MENU */
         .menu {
             display: flex;
-            justify-content: center;
-            align-items: center; /* ✅ FIX */
+            align-items: center;
             gap: 15px;
-            flex-grow: 1;
         }
 
-        /* Normalize all nav items */
-        .menu a,
-        .dropdown-menu > a {
-            display: flex;              /* ✅ FIX */
-            align-items: center;        /* ✅ FIX */
+        .menu a {
             color: white;
             text-decoration: none;
             font-size: 14px;
@@ -59,13 +59,12 @@
             border-radius: 5px;
         }
 
-        .dropdown-menu {
+        /* DROPDOWN */
+        .dropdown {
             position: relative;
-            display: flex;              /* ✅ FIX */
-            align-items: center;        /* ✅ FIX */
         }
 
-        .dropdown-menu-content {
+        .dropdown-content {
             display: none;
             position: absolute;
             background: rgba(51, 51, 51, 0.95);
@@ -75,18 +74,70 @@
             left: 0;
         }
 
-        .dropdown-menu:hover .dropdown-menu-content {
-            display: block;
-        }
-
-        .dropdown-menu-content a {
+        .dropdown-content a {
             display: block;
             padding: 10px;
             color: white;
         }
 
-        .dropdown-menu-content a:hover {
+        .dropdown-content a:hover {
             background: #555;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin: 4px 0;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            :root {
+                --navbar-height: 70px;
+            }
+
+            .menu {
+                position: absolute;
+                top: var(--navbar-height);
+                left: 0;
+                right: 0;
+                background: #0066cc;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+                display: none;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .dropdown-content {
+                position: static;
+                display: none;
+                background: #004c99;
+                width: 100%;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .hamburger {
+                display: flex;
+            }
         }
 
         /* HEADER */
@@ -117,18 +168,7 @@
             color: #333;
         }
 
-        p {
-            margin-bottom: 10px;
-        }
-
-        ul {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
+        p { margin-bottom: 10px; }
 
         footer {
             background: #FFA500;
@@ -154,18 +194,23 @@
 
 <body>
 
-<!-- ✅ FULL NAVBAR -->
 <nav class="top-nav">
     <div class="logo">
         <img src="images/favi.png" alt="Church Logo">
     </div>
 
-    <div class="menu">
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="menu" id="menu">
         <a href="index.htm">Home</a>
 
-        <div class="dropdown-menu">
+        <div class="dropdown">
             <a href="#">About</a>
-            <div class="dropdown-menu-content">
+            <div class="dropdown-content">
                 <a href="who.htm">Who we are</a>
                 <a href="what.htm">What we Believe</a>
                 <a href="where.htm">Where we Gather</a>
@@ -175,18 +220,18 @@
 
         <a href="#">Mission and Outreach</a>
 
-        <div class="dropdown-menu">
+        <div class="dropdown">
             <a href="#">Our Resources</a>
-            <div class="dropdown-menu-content">
+            <div class="dropdown-content">
                 <a href="#">Sermons Library</a>
                 <a href="#">Bible Reading</a>
                 <a href="#">Kids Church Content</a>
             </div>
         </div>
 
-        <div class="dropdown-menu">
+        <div class="dropdown">
             <a href="#">Connect with us</a>
-            <div class="dropdown-menu-content">
+            <div class="dropdown-content">
                 <a href="#">Fill connect card</a>
                 <a href="#">Sign up for events</a>
                 <a href="#">Participate in Ministry</a>
@@ -227,19 +272,38 @@
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const elements = document.querySelectorAll(".fade-in");
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
+    hamburger.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+
+    // Mobile dropdown toggle
+    document.querySelectorAll('.dropdown').forEach(drop => {
+        drop.addEventListener('click', function (e) {
+            if (window.innerWidth <= 900) {
+                e.stopPropagation();
+                this.classList.toggle('active');
             }
         });
-    }, { threshold: 0.1 });
+    });
 
-    elements.forEach(el => observer.observe(el));
-});
+    // Scroll animations
+    document.addEventListener("DOMContentLoaded", function () {
+        const elements = document.querySelectorAll(".fade-in");
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elements.forEach(el => observer.observe(el));
+    });
 </script>
 
 </body>

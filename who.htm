@@ -1,148 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Who We Are - Dominion Spring International Church</title>
-    <link rel="icon" type="image/x-icon" href="favi.jpg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who We Are - Dominion Spring International Church</title>
+<link rel="icon" type="image/x-icon" href="images/favi.png">
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Agency FB', Arial, sans-serif; padding-top: 200px; }
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Top Navigation */
-        .top-nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background: #0066cc;
-            z-index: 1000;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+body {
+    font-family: 'Agency FB', Arial, sans-serif;
+    padding-top: 90px;
+}
 
-        .top-nav .logo img { width: 160px; }
+/* NAVBAR */
+.top-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #0066cc;
+    z-index: 1000;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-        .menu {
-            display: flex;
-            gap: 15px;
-            flex-grow: 1;
-            justify-content: center;
-        }
+.logo img {
+    width: 140px;
+}
 
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 5px 8px;
-        }
+/* MENU */
+.menu {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
 
-        .menu a:hover {
-            color: #FFA500;
-            border: 2px solid #FFA500;
-            border-radius: 5px;
-        }
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 8px;
+}
 
-        .dropdown-menu { position: relative; }
-        .dropdown-menu-content {
-            display: none;
-            position: absolute;
-            background: rgba(51,51,51,0.9);
-            min-width: 180px;
-            top: 100%;
-            border-radius: 5px;
-        }
+.menu a:hover {
+    color: #FFA500;
+    border: 2px solid #FFA500;
+    border-radius: 5px;
+}
 
-        .dropdown-menu:hover .dropdown-menu-content { display: block; }
+/* DROPDOWN */
+.dropdown-menu {
+    position: relative;
+}
 
-        .dropdown-menu-content a {
-            display: block;
-            padding: 10px;
-        }
+.dropdown-menu-content {
+    display: none;
+    position: absolute;
+    background: rgba(51,51,51,0.9);
+    min-width: 180px;
+    top: 100%;
+    border-radius: 5px;
+}
 
-        /* Header */
-        header {
-            background: #333;
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
+.dropdown-menu:hover .dropdown-menu-content {
+    display: block;
+}
 
-        /* Static Image Section - MODIFIED TO SHOW FULL IMAGE */
-        .static-image {
-            width: 100%;
-            margin-bottom: 40px;
-            background: #000; /* Optional: adds a background if image is smaller than screen */
-        }
+.dropdown-menu-content a {
+    display: block;
+    padding: 10px;
+}
 
-        .static-image img {
-            width: 100%;
-            height: auto; /* Changed from 400px to auto to prevent cropping */
-            display: block; /* Removes small gap at the bottom */
-        }
+/* HAMBURGER */
+.hamburger {
+    display: none;
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+}
 
-        /* About Section */
-        .about-section {
-            padding: 40px 20px;
-            max-width: 1000px;
-            margin: auto;
-            line-height: 1.8;
-        }
+/* HEADER */
+header {
+    background: #333;
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
 
-        .about-section h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+/* IMAGE */
+.static-image {
+    width: 100%;
+    margin-bottom: 40px;
+}
 
-        .about-section p {
-            margin-bottom: 20px;
-            color: #555;
-        }
+.static-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
-        /* Core Values Styling */
-        .core-values {
-            margin-top: 15px;
-            margin-bottom: 30px;
-            padding-left: 20px;
-        }
+/* CONTENT */
+.about-section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+    line-height: 1.8;
+}
 
-        .core-values li {
-            margin-bottom: 12px;
-            color: #555;
-            line-height: 1.6;
-        }
+.about-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
 
-        .core-values li strong {
-            color: #333;
-        }
+.about-section p {
+    margin-bottom: 20px;
+    color: #555;
+}
 
-        /* Footer */
-        footer {
-            background: #FFA500;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
+.core-values {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .menu { flex-direction: column; align-items: center; }
-        }
-    </style>
+.core-values li {
+    margin-bottom: 12px;
+    color: #555;
+}
+
+/* FOOTER */
+footer {
+    background: #FFA500;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0066cc;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 15px;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .dropdown-menu-content {
+        position: static;
+        display: none;
+        background: rgba(51,51,51,0.95);
+    }
+
+    .dropdown-menu.active .dropdown-menu-content {
+        display: block;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<!-- Navigation -->
+<!-- NAVBAR -->
 <nav class="top-nav">
+
     <div class="logo">
-        <img src="images/favi.png"  alt="Church Logo">
+        <img src="images/favi.png" alt="Church Logo">
     </div>
 
-    <div class="menu">
+    <div class="hamburger" id="hamburger">☰</div>
+
+    <div class="menu" id="menu">
+
         <a href="index.htm">Home</a>
 
         <div class="dropdown-menu">
@@ -178,64 +225,89 @@
         </div>
 
         <a href="#">More ...</a>
+
     </div>
 </nav>
 
-<!-- Header -->
+<!-- HEADER -->
 <header>
     <h1>Who We Are</h1>
     <p>Learn more about Dominion Spring International Church and our vision.</p>
 </header>
 
-<!-- Static Image Section -->
+<!-- IMAGE -->
 <section class="static-image">
     <img src="images/cat1.jpeg" alt="Church Image">
 </section>
 
-<!-- About Content -->
+<!-- CONTENT -->
 <section class="about-section">
 
     <h2>Our Vision</h2>
     <p>
-       “To raise a global generation of Spirit-filled believers overflowing with the life of Christ - transforming nations through the rivers of living waters that flow within them, bringing healing, revival and dominion to every sphere of life.”
-       <br>(Referenced scripture: John 7:38)
+        “To raise a global generation of Spirit-filled believers overflowing with the life of Christ...”
+        <br>(John 7:38)
     </p>
 
     <h2>Our Mission</h2>
     <p>
-        “To lead people into a deep, life-giving relationship with Jesus Christ, nurturing them through the true Word and the Spirit until they become fountains of divine life — impacting their communities, discipling nations and manifesting God’s Kingdom, power and glory in every place.”
-        <br>(Referenced scripture: John 14:6)
+        “To lead people into a deep, life-giving relationship with Jesus Christ...”
+        <br>(John 14:6)
     </p>
 
-    <!-- Core Values Added -->
     <h2>Our Core Values</h2>
     <ul class="core-values">
-        <li><strong>Faith in God:</strong> We live by unwavering faith in the Word and promises of God.</li>
-        <li><strong>The Word and the Spirit:</strong> We are guided and empowered by the living Word and the Holy Spirit.</li>
-        <li><strong>Holiness and Integrity:</strong> We walk in purity, truth, and righteousness.</li>
-        <li><strong>Love and Compassion:</strong> We demonstrate Christ’s love through service and care for others.</li>
-        <li><strong>Excellence and Stewardship:</strong> We serve God with diligence, creativity, and excellence.</li>
-        <li><strong>Discipleship and Dominion:</strong> We raise Kingdom leaders who influence and transform society.</li>
-        <li><strong>Revival and Impact:</strong> We carry the life of the Spirit to bring revival and transformation.</li>
+        <li><strong>Faith in God:</strong> We live by unwavering faith in the Word of God.</li>
+        <li><strong>The Word and the Spirit:</strong> Guided by Scripture and the Holy Spirit.</li>
+        <li><strong>Holiness and Integrity:</strong> We walk in purity and righteousness.</li>
+        <li><strong>Love and Compassion:</strong> We serve others in Christ’s love.</li>
+        <li><strong>Excellence and Stewardship:</strong> We serve with diligence and excellence.</li>
+        <li><strong>Discipleship and Dominion:</strong> We raise Kingdom leaders.</li>
+        <li><strong>Revival and Impact:</strong> We bring transformation through the Spirit.</li>
     </ul>
 
     <h2>Who We Are</h2>
     <p>
-        Dominion Spring International Church is a vibrant and growing community of believers committed to sharing the love of Christ. 
-        We are passionate about building lives through sound teaching, fellowship, and outreach initiatives that impact our society.
+        Dominion Spring International Church is a vibrant and growing community of believers committed to sharing the love of Christ.
     </p>
 
     <h2>Our Community</h2>
     <p>
-        Our church is more than a place of worship—it is a family. We foster meaningful relationships through small groups, youth programs, 
-        and community outreach activities that bring people together in unity and purpose.
+        Our church is more than a place of worship—it is a family built on fellowship, outreach, and unity.
     </p>
+
 </section>
 
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
     <p>&copy; 2026 Dominion Spring International Church. All rights reserved.</p>
 </footer>
+
+<!-- SCRIPT -->
+<script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
+
+// Toggle menu
+hamburger.addEventListener("click", () => {
+    menu.classList.toggle("active");
+});
+
+// Dropdown toggle on mobile
+const dropdowns = document.querySelectorAll(".dropdown-menu");
+
+dropdowns.forEach(drop => {
+    drop.addEventListener("click", function(e) {
+        e.stopPropagation();
+        this.classList.toggle("active");
+    });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener("click", () => {
+    dropdowns.forEach(d => d.classList.remove("active"));
+});
+</script>
 
 </body>
 </html>

@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +12,11 @@
 
         body {
             font-family: 'Agency FB', Arial, sans-serif;
-            padding-top: 200px;
+            padding-top: 80px;
             background-color: #f4f4f4;
         }
 
-        /* NAVBAR (UNCHANGED) */
+        /* NAVBAR */
         .top-nav {
             position: fixed;
             top: 0;
@@ -24,60 +25,72 @@
             background: #0066cc;
             z-index: 1000;
             padding: 10px 20px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .top-nav .logo img {
-            width: 160px;
+        .logo img {
+            width: 140px;
         }
 
         .menu {
             display: flex;
-            justify-content: center;
+            align-items: center;
             gap: 15px;
-            flex-grow: 1;
         }
 
-        .menu a {
+        .menu a, .dropbtn {
             color: white;
             text-decoration: none;
             font-size: 14px;
             font-weight: bold;
-            padding: 5px 8px;
+            padding: 6px 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
 
-        .menu a:hover {
+        .menu a:hover, .dropbtn:hover {
             color: #FFA500;
             border: 2px solid #FFA500;
             border-radius: 5px;
         }
 
-        .dropdown-menu { position: relative; }
+        .dropdown {
+            position: relative;
+        }
 
-        .dropdown-menu-content {
+        .dropdown-content {
             display: none;
             position: absolute;
-            background: rgba(51, 51, 51, 0.95);
+            background: #333;
             min-width: 180px;
             border-radius: 5px;
             top: 100%;
             left: 0;
         }
 
-        .dropdown-menu:hover .dropdown-menu-content {
-            display: block;
-        }
-
-        .dropdown-menu-content a {
+        .dropdown-content a {
             display: block;
             padding: 10px;
             color: white;
         }
 
-        .dropdown-menu-content a:hover {
+        .dropdown-content a:hover {
             background: #555;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
         }
 
         /* HEADER */
@@ -156,8 +169,41 @@
             transform: translateY(0);
         }
 
-        /* RESPONSIVE */
+        /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
+
+            .hamburger {
+                display: block;
+            }
+
+            .menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+
+                background: #0066cc;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+
+                display: none;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu a, .dropbtn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .dropdown-content {
+                position: static;
+                width: 100%;
+            }
+
             .leader {
                 flex-direction: column;
                 text-align: center;
@@ -168,18 +214,22 @@
 
 <body>
 
-<!-- ✅ FULL NAVBAR -->
+<!-- NAVBAR -->
 <nav class="top-nav">
     <div class="logo">
         <img src="images/favi.png" alt="Church Logo">
     </div>
 
-    <div class="menu">
+    <div class="hamburger" id="hamburger">
+        ☰
+    </div>
+
+    <div class="menu" id="menu">
         <a href="index.htm">Home</a>
 
-        <div class="dropdown-menu">
-            <a href="#">About</a>
-            <div class="dropdown-menu-content">
+        <div class="dropdown">
+            <button class="dropbtn">About</button>
+            <div class="dropdown-content">
                 <a href="who.htm">Who we are</a>
                 <a href="what.htm">What we Believe</a>
                 <a href="where.htm">Where we Gather</a>
@@ -189,18 +239,18 @@
 
         <a href="#">Mission and Outreach</a>
 
-        <div class="dropdown-menu">
-            <a href="#">Our Resources</a>
-            <div class="dropdown-menu-content">
+        <div class="dropdown">
+            <button class="dropbtn">Our Resources</button>
+            <div class="dropdown-content">
                 <a href="#">Sermons Library</a>
                 <a href="#">Bible Reading</a>
                 <a href="#">Kids Church Content</a>
             </div>
         </div>
 
-        <div class="dropdown-menu">
-            <a href="#">Connect with us</a>
-            <div class="dropdown-menu-content">
+        <div class="dropdown">
+            <button class="dropbtn">Connect with us</button>
+            <div class="dropdown-content">
                 <a href="#">Fill connect card</a>
                 <a href="#">Sign up for events</a>
                 <a href="#">Participate in Ministry</a>
@@ -220,9 +270,8 @@
 
 <div class="container">
 
-    <!-- Leader 1 -->
     <div class="leader fade-in">
-        <img src="images/leader1.jpg" alt="Leader 1">
+        <img src="images/leader1.jpg">
         <div class="leader-details">
             <h3>Rev. John Doe</h3>
             <p><strong>Position:</strong> Senior Pastor</p>
@@ -232,9 +281,8 @@
 
     <hr>
 
-    <!-- Leader 2 -->
     <div class="leader fade-in">
-        <img src="images/leader2.jpg" alt="Leader 2">
+        <img src="images/leader2.jpg">
         <div class="leader-details">
             <h3>Pastor Jane Smith</h3>
             <p><strong>Position:</strong> Associate Pastor</p>
@@ -244,9 +292,8 @@
 
     <hr>
 
-    <!-- Leader 3 -->
     <div class="leader fade-in">
-        <img src="images/leader3.jpg" alt="Leader 3">
+        <img src="images/leader3.jpg">
         <div class="leader-details">
             <h3>Mr. David Mwangi</h3>
             <p><strong>Position:</strong> Church Secretary</p>
@@ -256,9 +303,8 @@
 
     <hr>
 
-    <!-- Leader 4 -->
     <div class="leader fade-in">
-        <img src="images/leader4.jpg" alt="Leader 4">
+        <img src="images/leader4.jpg">
         <div class="leader-details">
             <h3>Mrs. Grace Akinyi</h3>
             <p><strong>Position:</strong> Treasurer</p>
@@ -268,9 +314,8 @@
 
     <hr>
 
-    <!-- Leader 5 -->
     <div class="leader fade-in">
-        <img src="images/leader5.jpg" alt="Leader 5">
+        <img src="images/leader5.jpg">
         <div class="leader-details">
             <h3>Mr. Peter Otieno</h3>
             <p><strong>Position:</strong> Youth Coordinator</p>
@@ -284,10 +329,35 @@
     <p>&copy; 2026 Life Spring Dominion Church International. All rights reserved.</p>
 </footer>
 
-<!-- SCROLL ANIMATION SCRIPT -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
 
+hamburger.addEventListener("click", () => {
+    menu.classList.toggle("active");
+});
+
+const dropdowns = document.querySelectorAll(".dropdown");
+
+dropdowns.forEach(drop => {
+    const btn = drop.querySelector(".dropbtn");
+
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        dropdowns.forEach(d => {
+            if (d !== drop) d.classList.remove("active");
+        });
+
+        drop.classList.toggle("active");
+    });
+});
+
+document.addEventListener("click", () => {
+    dropdowns.forEach(d => d.classList.remove("active"));
+});
+
+document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(".fade-in");
 
     const observer = new IntersectionObserver(entries => {
@@ -299,7 +369,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, { threshold: 0.1 });
 
     elements.forEach(el => observer.observe(el));
-
 });
 </script>
 
