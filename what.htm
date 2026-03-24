@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We Believe - Life Spring Dominion Church International</title>
+    <link rel="icon" type="image/x-icon" href="favi.jpg">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Agency FB', Arial, sans-serif;
+            padding-top: 200px;
+            background-color: #f4f4f4;
+        }
+
+        /* NAVBAR */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #0066cc;
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav .logo img {
+            width: 160px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* ✅ FIX */
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        /* Normalize all nav items */
+        .menu a,
+        .dropdown-menu > a {
+            display: flex;              /* ✅ FIX */
+            align-items: center;        /* ✅ FIX */
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 8px;
+        }
+
+        .menu a:hover {
+            color: #FFA500;
+            border: 2px solid #FFA500;
+            border-radius: 5px;
+        }
+
+        .dropdown-menu {
+            position: relative;
+            display: flex;              /* ✅ FIX */
+            align-items: center;        /* ✅ FIX */
+        }
+
+        .dropdown-menu-content {
+            display: none;
+            position: absolute;
+            background: rgba(51, 51, 51, 0.95);
+            min-width: 180px;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-menu:hover .dropdown-menu-content {
+            display: block;
+        }
+
+        .dropdown-menu-content a {
+            display: block;
+            padding: 10px;
+            color: white;
+        }
+
+        .dropdown-menu-content a:hover {
+            background: #555;
+        }
+
+        /* HEADER */
+        header {
+            background: #333;
+            color: white;
+            padding: 30px 15px;
+            text-align: center;
+        }
+
+        /* CONTENT */
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            line-height: 1.7;
+        }
+
+        h2 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: #FFA500;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        /* SCROLL ANIMATION */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ✅ FULL NAVBAR -->
+<nav class="top-nav">
+    <div class="logo">
+        <img src="images/favi.png" alt="Church Logo">
+    </div>
+
+    <div class="menu">
+        <a href="index.htm">Home</a>
+
+        <div class="dropdown-menu">
+            <a href="#">About</a>
+            <div class="dropdown-menu-content">
+                <a href="who.htm">Who we are</a>
+                <a href="what.htm">What we Believe</a>
+                <a href="where.htm">Where we Gather</a>
+                <a href="leaders.htm">Meet our leaders</a>
+            </div>
+        </div>
+
+        <a href="#">Mission and Outreach</a>
+
+        <div class="dropdown-menu">
+            <a href="#">Our Resources</a>
+            <div class="dropdown-menu-content">
+                <a href="#">Sermons Library</a>
+                <a href="#">Bible Reading</a>
+                <a href="#">Kids Church Content</a>
+            </div>
+        </div>
+
+        <div class="dropdown-menu">
+            <a href="#">Connect with us</a>
+            <div class="dropdown-menu-content">
+                <a href="#">Fill connect card</a>
+                <a href="#">Sign up for events</a>
+                <a href="#">Participate in Ministry</a>
+                <a href="#">Join Group</a>
+                <a href="reg.htm">Register for Membership</a>
+            </div>
+        </div>
+
+        <a href="#">More ...</a>
+    </div>
+</nav>
+
+<header>
+    <h1>What We Believe</h1>
+    <p>Doctrinal Statement of Life Spring Dominion Church International</p>
+</header>
+
+<div class="container">
+
+    <h2 class="fade-in">Statement of Faith</h2>
+    <p class="fade-in">
+        We affirm that the Holy Bible is the inspired, infallible, and final authority in all matters of faith and conduct.
+    </p>
+
+    <h3 class="fade-in">The Godhead</h3>
+    <p class="fade-in">We believe in one God existing eternally in three persons: Father, Son, and Holy Spirit.</p>
+
+    <h3 class="fade-in">Jesus Christ</h3>
+    <p class="fade-in">Jesus Christ is the Son of God, fully divine and fully human, born of a virgin, and the only Savior of mankind.</p>
+
+    <h3 class="fade-in">Sin and Salvation</h3>
+    <p class="fade-in">All humanity is sinful, and salvation is only through repentance and faith in Jesus Christ.</p>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Life Spring Dominion Church International. All rights reserved.</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".fade-in");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>

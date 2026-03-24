@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who We Are - Dominion Spring International Church</title>
+    <link rel="icon" type="image/x-icon" href="favi.jpg">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Agency FB', Arial, sans-serif; padding-top: 200px; }
+
+        /* Top Navigation */
+        .top-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: #0066cc;
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav .logo img { width: 160px; }
+
+        .menu {
+            display: flex;
+            gap: 15px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 8px;
+        }
+
+        .menu a:hover {
+            color: #FFA500;
+            border: 2px solid #FFA500;
+            border-radius: 5px;
+        }
+
+        .dropdown-menu { position: relative; }
+        .dropdown-menu-content {
+            display: none;
+            position: absolute;
+            background: rgba(51,51,51,0.9);
+            min-width: 180px;
+            top: 100%;
+            border-radius: 5px;
+        }
+
+        .dropdown-menu:hover .dropdown-menu-content { display: block; }
+
+        .dropdown-menu-content a {
+            display: block;
+            padding: 10px;
+        }
+
+        /* Header */
+        header {
+            background: #333;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* Static Image Section - MODIFIED TO SHOW FULL IMAGE */
+        .static-image {
+            width: 100%;
+            margin-bottom: 40px;
+            background: #000; /* Optional: adds a background if image is smaller than screen */
+        }
+
+        .static-image img {
+            width: 100%;
+            height: auto; /* Changed from 400px to auto to prevent cropping */
+            display: block; /* Removes small gap at the bottom */
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .about-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .about-section p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Core Values Styling */
+        .core-values {
+            margin-top: 15px;
+            margin-bottom: 30px;
+            padding-left: 20px;
+        }
+
+        .core-values li {
+            margin-bottom: 12px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .core-values li strong {
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background: #FFA500;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="top-nav">
+    <div class="logo">
+        <img src="images/favi.png"  alt="Church Logo">
+    </div>
+
+    <div class="menu">
+        <a href="index.htm">Home</a>
+
+        <div class="dropdown-menu">
+            <a href="about.htm">About</a>
+            <div class="dropdown-menu-content">
+                <a href="who.htm">Who we are</a>
+                <a href="what.htm">What we Believe</a>
+                <a href="where.htm">Where we Gather</a>
+                <a href="leaders.htm">Meet our leaders</a>
+            </div>
+        </div>
+
+        <a href="#">Mission and Outreach</a>
+
+        <div class="dropdown-menu">
+            <a href="#">Our Resources</a>
+            <div class="dropdown-menu-content">
+                <a href="#">Sermons Library</a>
+                <a href="#">Bible Reading</a>
+                <a href="#">Kids Church Content</a>
+            </div>
+        </div>
+
+        <div class="dropdown-menu">
+            <a href="#">Connect with us</a>
+            <div class="dropdown-menu-content">
+                <a href="#">Fill connect card</a>
+                <a href="#">Sign up for events</a>
+                <a href="#">Participate in Ministry</a>
+                <a href="#">Join Group</a>
+                <a href="reg.htm">Register for Membership</a>
+            </div>
+        </div>
+
+        <a href="#">More ...</a>
+    </div>
+</nav>
+
+<!-- Header -->
+<header>
+    <h1>Who We Are</h1>
+    <p>Learn more about Dominion Spring International Church and our vision.</p>
+</header>
+
+<!-- Static Image Section -->
+<section class="static-image">
+    <img src="images/cat1.jpeg" alt="Church Image">
+</section>
+
+<!-- About Content -->
+<section class="about-section">
+
+    <h2>Our Vision</h2>
+    <p>
+       “To raise a global generation of Spirit-filled believers overflowing with the life of Christ - transforming nations through the rivers of living waters that flow within them, bringing healing, revival and dominion to every sphere of life.”
+       <br>(Referenced scripture: John 7:38)
+    </p>
+
+    <h2>Our Mission</h2>
+    <p>
+        “To lead people into a deep, life-giving relationship with Jesus Christ, nurturing them through the true Word and the Spirit until they become fountains of divine life — impacting their communities, discipling nations and manifesting God’s Kingdom, power and glory in every place.”
+        <br>(Referenced scripture: John 14:6)
+    </p>
+
+    <!-- Core Values Added -->
+    <h2>Our Core Values</h2>
+    <ul class="core-values">
+        <li><strong>Faith in God:</strong> We live by unwavering faith in the Word and promises of God.</li>
+        <li><strong>The Word and the Spirit:</strong> We are guided and empowered by the living Word and the Holy Spirit.</li>
+        <li><strong>Holiness and Integrity:</strong> We walk in purity, truth, and righteousness.</li>
+        <li><strong>Love and Compassion:</strong> We demonstrate Christ’s love through service and care for others.</li>
+        <li><strong>Excellence and Stewardship:</strong> We serve God with diligence, creativity, and excellence.</li>
+        <li><strong>Discipleship and Dominion:</strong> We raise Kingdom leaders who influence and transform society.</li>
+        <li><strong>Revival and Impact:</strong> We carry the life of the Spirit to bring revival and transformation.</li>
+    </ul>
+
+    <h2>Who We Are</h2>
+    <p>
+        Dominion Spring International Church is a vibrant and growing community of believers committed to sharing the love of Christ. 
+        We are passionate about building lives through sound teaching, fellowship, and outreach initiatives that impact our society.
+    </p>
+
+    <h2>Our Community</h2>
+    <p>
+        Our church is more than a place of worship—it is a family. We foster meaningful relationships through small groups, youth programs, 
+        and community outreach activities that bring people together in unity and purpose.
+    </p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Dominion Spring International Church. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

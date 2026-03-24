@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Registration - Dominion Spring International Church</title>
+    <link rel="icon" type="image/x-icon" href="favi.jpg">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Agency FB', Arial, sans-serif;
+            padding-top: 200px;
+            background-color: #f4f4f4;
+        }
+
+        /* NAVBAR */
+        .top-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: #0066cc;
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav .logo img { width: 160px; }
+
+        .menu {
+            display: flex;
+            gap: 15px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 8px;
+        }
+
+        .menu a:hover {
+            color: #FFA500;
+            border: 2px solid #FFA500;
+            border-radius: 5px;
+        }
+
+        /* HEADER */
+        header {
+            background: #333;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* FORM */
+        .form-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #004c99;
+        }
+
+        /* FLASH MESSAGE */
+        .flash-message {
+            display: none;
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        footer {
+            background: #FFA500;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="top-nav">
+    <div class="logo">
+        <img src="images/favi.png" alt="Church Logo">
+    </div>
+
+    <div class="menu">
+        <a href="index.htm">Home</a>
+        <a href="who.htm">About</a>
+        <a href="membership.htm">Membership</a>
+    </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+    <h1>Church Membership Registration</h1>
+    <p>Join our church family by filling in your details below</p>
+</header>
+
+<!-- FORM -->
+<div class="form-container">
+    <h2>Membership Form</h2>
+
+    <!-- FLASH MESSAGE -->
+    <div id="successMessage" class="flash-message">
+        Message sent successfully!
+    </div>
+
+    <form id="membershipForm">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="fullname" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" id="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" id="dob" required>
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <select id="gender" required>
+                <option value="">Select gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Address</label>
+            <textarea id="address" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Occupation</label>
+            <input type="text" id="occupation" required>
+        </div>
+
+        <button type="submit">Submit Membership</button>
+    </form>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Dominion Spring International Church. All rights reserved.</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+document.getElementById("membershipForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // prevent form submission
+
+    // Get all fields
+    const fields = [
+        "fullname",
+        "email",
+        "phone",
+        "dob",
+        "gender",
+        "address",
+        "occupation"
+    ];
+
+    let allFilled = true;
+
+    fields.forEach(id => {
+        const value = document.getElementById(id).value.trim();
+        if (value === "") {
+            allFilled = false;
+        }
+    });
+
+    if (!allFilled) {
+        alert("Please fill in all fields before submitting.");
+        return;
+    }
+
+    // Show success message
+    const message = document.getElementById("successMessage");
+    message.style.display = "block";
+
+    // Optional: reset form
+    document.getElementById("membershipForm").reset();
+
+    // Hide message after 3 seconds
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000);
+});
+</script>
+
+</body>
+</html>
