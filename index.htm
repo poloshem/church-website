@@ -214,6 +214,29 @@
             .nav-bar button { width: 100%; }
             .events-grid { grid-template-columns: 1fr; }
         }
+
+        /* ✅ DONATE BUTTON */
+        .donate-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #FFA500;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2000;
+            display: none;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 
@@ -357,6 +380,11 @@
     <p>&copy; 2026 Dominion Spring International Church. All rights reserved.</p>
 </footer>
 
+<!-- ✅ DONATE BUTTON -->
+<a href="https://pay.intasend.com/xxxxx" target="_blank">
+    <button class="donate-btn" id="donateBtn">Donate via M-Pesa</button>
+</a>
+
 </main>
 
 <script>
@@ -378,15 +406,19 @@
         });
     });
 
-    // ✅ Carousel functionality (added only)
+    // Carousel functionality
     const slides = document.querySelectorAll(".carousel-slide");
     let currentIndex = 0;
-
     setInterval(() => {
         slides[currentIndex].classList.remove("active");
         currentIndex = (currentIndex + 1) % slides.length;
         slides[currentIndex].classList.add("active");
     }, 3000);
+
+    // Show donate button after 5 seconds
+    setTimeout(() => {
+        document.getElementById("donateBtn").style.display = "block";
+    }, 5000);
 </script>
 
 </body>
