@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Content - Dominion Spring International Church</title>
+<link rel="icon" type="image/x-icon" href="favi.jpg">
+<style>
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Arial, sans-serif; line-height:1.6; background-color:#fff; color:#333; }
+
+    /* Navbar */
+    nav { background-color:#ff6f61; padding:15px 0; }
+    nav ul { list-style:none; display:flex; justify-content:center; gap:30px; }
+    nav ul li a { color:#fff; text-decoration:none; font-weight:bold; font-size:1rem; }
+    nav ul li a:hover { text-decoration:underline; }
+
+    /* Hero Section */
+    .hero { background: url('kids-hero.jpg') center/cover no-repeat; color:#fff; text-align:center; padding:100px 20px; }
+    .hero h1 { font-size:3rem; margin-bottom:20px; }
+    .hero p { font-size:1.3rem; }
+
+    /* Kids Content Section */
+    #kids-content { padding:50px 20px; background-color:#f9f3e7; text-align:center; }
+    #kids-content h2 { color:#ff6f61; font-size:2.5rem; margin-bottom:20px; }
+    #kids-content p { font-size:1.2rem; margin-bottom:40px; }
+
+    .cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+    .card { background-color:#fff; border-radius:10px; padding:20px; width:250px; box-shadow:0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease; cursor:pointer; }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { margin-bottom:10px; }
+    .card p { font-size:1rem; margin-bottom:10px; }
+    .card a { display:inline-block; margin-top:10px; padding:10px 15px; color:#fff; text-decoration:none; border-radius:5px; }
+    .bible { background-color:#ff6f61; }
+    .coloring { background-color:#00acc1; }
+    .videos { background-color:#8e24aa; }
+    .quizzes { background-color:#fdd835; color:#333; }
+
+    /* Story menu */
+    #story-menu {
+        position: fixed;
+        top:100px;
+        left:0;
+        width:250px;
+        max-height:70vh;
+        overflow-y:auto;
+        background:#fff3e6;
+        border-right:2px solid #ff6f61;
+        padding:10px;
+        display:none;
+        box-shadow:2px 2px 10px rgba(0,0,0,0.1);
+        z-index:1000;
+    }
+    #story-menu h3 { color:#ff6f61; margin-bottom:10px; text-align:center; }
+    #story-menu ul { list-style:none; padding:0; }
+    #story-menu ul li { margin-bottom:8px; }
+    #story-menu ul li a { color:#0077cc; cursor:pointer; text-decoration:none; }
+    #story-menu ul li a:hover { text-decoration:underline; }
+
+    /* Story display */
+    #story-display {
+        margin-top:40px;
+        padding:20px;
+        background-color:#fff3e6;
+        border-radius:10px;
+        box-shadow:0 4px 6px rgba(0,0,0,0.1);
+        text-align:left;
+        max-width:900px;
+        margin-left:auto;
+        margin-right:auto;
+        min-height:300px;
+        transition: all 0.3s ease;
+    }
+    #story-display h2 { color:#ff6f61; margin-bottom:15px; }
+
+    footer {
+        background-color:#333;
+        color:#fff;
+        text-align:center;
+        padding:20px 10px;
+        margin-top:50px;
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="index.htm">Home</a></li>
+        <li><a href="about.htm">About Us</a></li>
+        <li><a href="missions.htm">Missions</a></li>
+        <li><a href="sermons.htm">Sermons</a></li>
+        <li><a href="contact.htm">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <h1>Kids Content</h1>
+    <p>Fun, safe, and educational content for our little ones!</p>
+</section>
+
+<section id="kids-content">
+    <h2>Explore Our Kids Resources</h2>
+    <p>Interactive Bible stories, coloring pages, videos, and quizzes to help children learn about God in a fun way!</p>
+    <div class="cards">
+        <div class="card bible" onmouseenter="showStoryMenu()" onclick="showStoryMenu(true)">
+            <h3>Bible Stories</h3>
+            <p>Short and engaging Bible stories for kids.</p>
+        </div>
+        <div class="card">
+            <h3>Coloring Pages</h3>
+            <p>Download and print fun Bible-themed coloring pages.</p>
+            <a href="coloring-pages.html" class="coloring">Explore</a>
+        </div>
+        <div class="card">
+            <h3>Videos</h3>
+            <p>Watch fun and educational Bible videos for kids.</p>
+            <a href="kids-videos.html" class="videos">Watch</a>
+        </div>
+        <div class="card">
+            <h3>Quizzes</h3>
+            <p>Interactive quizzes to learn more about the Bible.</p>
+            <a href="kids-quizzes.html" class="quizzes">Try Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- Story menu -->
+<div id="story-menu">
+    <h3>Choose a Story</h3>
+    <ul id="story-links"></ul>
+</div>
+
+<!-- Story display -->
+<div id="story-display">
+    <p>Hover over "Bible Stories" and select a story to read!</p>
+</div>
+
+<footer>
+    &copy; 2026 Dominion Spring International Church. Stories adapted from 
+    <a href="https://openbiblestories.org/" target="_blank" style="color:#fff;">Open Bible Stories</a> (CC BY‑SA 4.0).
+</footer>
+
+<script>
+    const titles = [
+        "The_Creation", "Sin_Enters_the_World", "The_Flood", "God%27s_Covenant_with_Abraham", 
+        "The_Son_of_Promise_(Isaac)", "God_Provides_for_Isaac", "God_Blesses_Jacob", "God_Saves_Joseph_and_His_Family",
+        "God_Calls_Moses", "The_Ten_Plagues", "The_Passover", "The_Exodus",
+        "God%27s_Covenant_with_Israel", "Wandering_in_the_Wilderness", "The_Promised_Land", "The_Deliverers",
+        "God%27s_Covenant_with_David", "The_Divided_Kingdom", "The_Prophets", "The_Exile_and_Return",
+        "God_Promises_the_Messiah", "The_Birth_of_John", "The_Birth_of_Jesus", "John_Baptizes_Jesus",
+        "Satan_Tempts_Jesus", "Jesus_Starts_His_Ministry", "The_Good_Samaritan", "The_Rich_Young_Ruler",
+        "The_Unmerciful_Servant", "Jesus_Feeds_the_5000", "Jesus_Walks_on_Water", "Jesus_Heals_People",
+        "Parable_of_the_Sower", "Jesus_Teaches_Other_Stories", "The_Compassionate_Father", "The_Transfiguration",
+        "Jesus_Raises_Lazarus", "Jesus_Is_Betrayed", "Jesus_Is_Put_on_Trial", "Jesus_Is_Crucified",
+        "God_Raises_Jesus", "Jesus_Returns_to_Heaven", "The_Church_Begins", "Peter_and_John_Heal_a_Beggar",
+        "Stephen_and_Philip", "Saul_Becomes_Paul", "Paul_and_Silas_in_Philippi", "Jesus_Is_the_Promised_Messiah",
+        "God%27s_New_Covenant", "Jesus_Returns_Second_Coming"
+    ];
+
+    function showStoryMenu(force=false) {
+        const menu = document.getElementById('story-menu');
+        menu.style.display = 'block';
+        const ul = document.getElementById('story-links');
+        ul.innerHTML = '';
+        titles.forEach((t,i)=>{
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.textContent = (i+1)+'. '+t.replace(/_/g,' ');
+            a.onclick = ()=>{
+                fetchStory(t);
+                menu.style.display = 'none'; // hide menu after selection
+            };
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+    }
+
+    async function fetchStory(page) {
+        const display = document.getElementById("story-display");
+        display.innerHTML = "<p>Loading story…</p>";
+
+        const url = `https://en.wikisource.org/w/api.php?action=parse&page=Open_Bible_Stories/${page}&format=json&origin=*`;
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+            if(data.parse && data.parse.text) {
+                display.innerHTML = data.parse.text["*"]+
+                `<p style="margin-top:20px;font-size:0.9rem;color:#555;">
+                Source: Open Bible Stories (CC BY‑SA 4.0) — 
+                <a href="https://en.wikisource.org/wiki/Open_Bible_Stories/${page}" target="_blank">View Original</a>
+                </p>`;
+            } else {
+                display.innerHTML = "<p>Story not found.</p>";
+            }
+        } catch(err) {
+            display.innerHTML = "<p>Error loading story.</p>";
+            console.error(err);
+        }
+    }
+
+    // Hide menu if clicked outside
+    document.addEventListener('click', function(e){
+        const menu = document.getElementById('story-menu');
+        const card = document.querySelector('.card.bible');
+        if(!menu.contains(e.target) && !card.contains(e.target)){
+            menu.style.display='none';
+        }
+    });
+</script>
+
+</body>
+</html>
