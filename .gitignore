@@ -1,0 +1,8 @@
+# Ignore image cache and temporary files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Optional: ignore node_modules if you add them later
+# node_modules/
