@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join a Group - Dominion Spring International Church</title>
+    <link rel="icon" type="image/x-icon" href="images/favi.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navbar-height: 80px;
+        }
+
+        body {
+            font-family: 'Agency FB', Arial, sans-serif;
+            padding-top: var(--navbar-height);
+            background-color: #f4f4f4;
+        }
+
+        /* NAVBAR */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--navbar-height);
+            background: #0066cc;
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            width: 150px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 8px;
+        }
+
+        .menu a:hover {
+            color: #FFA500;
+            border: 2px solid #FFA500;
+            border-radius: 5px;
+        }
+
+        /* DROPDOWN */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(51, 51, 51, 0.95);
+            min-width: 180px;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            color: white;
+        }
+
+        .dropdown-content a:hover {
+            background: #555;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin: 4px 0;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            :root {
+                --navbar-height: 70px;
+            }
+
+            .menu {
+                position: absolute;
+                top: var(--navbar-height);
+                left: 0;
+                right: 0;
+                background: #0066cc;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+                display: none;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .dropdown-content {
+                position: static;
+                display: none;
+                background: #004c99;
+                width: 100%;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/Worshippers.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* GROUPS SECTION */
+        .groups-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .groups-section h2 {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 30px;
+        }
+
+        .group-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .group-card h3 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .group-card .group-details {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .group-card .group-details span {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .group-card p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* FORM */
+        .form-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .form-container .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 5px rgba(0,102,204,0.3);
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            gap: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: inherit;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #004c99;
+        }
+
+        .flash-message {
+            display: none;
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        footer {
+            background: #FFA500;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="top-nav">
+    <div class="logo">
+        <img src="images/favi.png" alt="Church Logo">
+    </div>
+
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="menu" id="menu">
+        <a href="index.htm">Home</a>
+
+        <div class="dropdown">
+            <a href="#">About</a>
+            <div class="dropdown-content">
+                <a href="who.htm">Who we are</a>
+                <a href="what.htm">What we Believe</a>
+                <a href="where.htm">Where we Gather</a>
+                <a href="leaders.htm">Meet our leaders</a>
+            </div>
+        </div>
+
+        <a href="missions.htm">Mission and Outreach</a>
+
+        <div class="dropdown">
+            <a href="#">Our Resources</a>
+            <div class="dropdown-content">
+                <a href="#">Sermons Library</a>
+                <a href="bible.htm">Bible Reading</a>
+                <a href="children.htm">Kids Church Content</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#">Connect with us</a>
+            <div class="dropdown-content">
+                <a href="connect-card.htm">Fill connect card</a>
+                <a href="events.htm">Sign up for events</a>
+                <a href="ministry.htm">Participate in Ministry</a>
+                <a href="groups.htm">Join Group</a>
+                <a href="reg.htm">Register for Membership</a>
+            </div>
+        </div>
+
+        <a href="#">More ...</a>
+    </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+    <h1>Join a Group</h1>
+    <p>Find your community and grow together in faith</p>
+</header>
+
+<!-- GROUPS LIST -->
+<div class="groups-section">
+    <h2>Our Community Groups</h2>
+
+    <div class="group-card">
+        <h3>🔵 Cell Groups</h3>
+        <div class="group-details">
+            <span>📅 Weekly</span>
+            <span>⏰ Various times</span>
+            <span>📍 Various locations</span>
+        </div>
+        <p>Small groups that meet weekly for fellowship, Bible study, and prayer. Find one near you!</p>
+    </div>
+
+    <div class="group-card">
+        <h3>👨 Men's Fellowship</h3>
+        <div class="group-details">
+            <span>📅 1st Saturday</span>
+            <span>⏰ 7:00 AM - 9:00 AM</span>
+            <span>📍 Fellowship Hall</span>
+        </div>
+        <p>A space for men to connect, share, and encourage each other in their walk with God.</p>
+    </div>
+
+    <div class="group-card">
+        <h3>👩 Women's Fellowship</h3>
+        <div class="group-details">
+            <span>📅 2nd Saturday</span>
+            <span>⏰ 10:00 AM - 12:00 PM</span>
+            <span>📍 Fellowship Hall</span>
+        </div>
+        <p>Empowering women through the Word, prayer, and genuine friendships.</p>
+    </div>
+
+    <div class="group-card">
+        <h3>🌟 Youth Group (18-35)</h3>
+        <div class="group-details">
+            <span>📅 1st & 3rd Saturday</span>
+            <span>⏰ 3:00 PM - 6:00 PM</span>
+            <span>📍 Youth Center</span>
+        </div>
+        <p>A vibrant community for young adults to grow spiritually and build lasting friendships.</p>
+    </div>
+
+    <div class="group-card">
+        <h3>👶 Young Couples & Families</h3>
+        <div class="group-details">
+            <span>📅 3rd Saturday</span>
+            <span>⏰ 4:00 PM - 6:00 PM</span>
+            <span>📍 Fellowship Hall</span>
+        </div>
+        <p>Connect with other young families, share experiences, and raise children in faith.</p>
+    </div>
+
+    <div class="group-card">
+        <h3>📖 Bible Study Groups</h3>
+        <div class="group-details">
+            <span>📅 Weekly</span>
+            <span>⏰ Various times</span>
+            <span>📍 Church premises</span>
+        </div>
+        <p>Deep dive into God's Word with fellow believers. Multiple study options available.</p>
+    </div>
+
+    <div class="group-card">
+        <h3>🎵 Choir & Music Group</h3>
+        <div class="group-details">
+            <span>📅 Wednesday & Saturday</span>
+            <span>⏰ 5:00 PM - 7:00 PM</span>
+            <span>📍 Sanctuary</span>
+        </div>
+        <p>Use your musical gifts to glorify God. Singers and musicians welcome!</p>
+    </div>
+
+    <div class="group-card">
+        <h3>🙏 Prayer Warriors</h3>
+        <div class="group-details">
+            <span>📅 Daily</span>
+            <span>⏰ 5:00 AM - 6:00 AM</span>
+            <span>📍 Online & Church</span>
+        </div>
+        <p>Join fellow believers in dedicated prayer for our church, community, and world.</p>
+    </div>
+</div>
+
+<!-- FORM -->
+<div class="form-container">
+    <h2>Group Registration</h2>
+    <p class="subtitle">Fill out the form below to join one of our groups</p>
+
+    <div id="successMessage" class="flash-message">
+        You have successfully joined the group! We will contact you with meeting details.
+    </div>
+
+    <form id="groupForm">
+        <div class="row">
+            <div class="form-group">
+                <label>First Name *</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label>Last Name *</label>
+                <input type="text" id="lastName" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" id="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="phone" required>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob">
+            </div>
+            <div class="form-group">
+                <label>Gender *</label>
+                <select id="gender" required>
+                    <option value="">Select gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Address/Location</label>
+            <input type="text" id="address" placeholder="Your residential area or nearest landmark">
+        </div>
+
+        <div class="form-group">
+            <label>Group(s) You Want to Join *</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="group" value="cell-group"> Cell Groups</label>
+                <label><input type="checkbox" name="group" value="mens-fellowship"> Men's Fellowship</label>
+                <label><input type="checkbox" name="group" value="womens-fellowship"> Women's Fellowship</label>
+                <label><input type="checkbox" name="group" value="youth"> Youth Group (18-35)</label>
+                <label><input type="checkbox" name="group" value="young-families"> Young Couples & Families</label>
+                <label><input type="checkbox" name="group" value="bible-study"> Bible Study Groups</label>
+                <label><input type="checkbox" name="group" value="choir"> Choir & Music Group</label>
+                <label><input type="checkbox" name="group" value="prayer"> Prayer Warriors</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Preferred meeting day/time</label>
+            <select id="preferredTime">
+                <option value="">Select preferred time</option>
+                <option>Weekday mornings</option>
+                <option>Weekday afternoons</option>
+                <option>Weekday evenings</option>
+                <option>Saturday mornings</option>
+                <option>Saturday afternoons</option>
+                <option>Sunday mornings</option>
+                <option>Any time works for me</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Are you a member of this church?</label>
+            <select id="memberStatus">
+                <option value="">Select status</option>
+                <option>Yes, I am a member</option>
+                <option>No, but I attend regularly</option>
+                <option>No, I am a first-time visitor</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Tell us about yourself</label>
+            <textarea id="about" rows="3" placeholder="Briefly tell us about yourself and what you hope to gain from joining a group..."></textarea>
+        </div>
+
+        <button type="submit">Join Group</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2026 Dominion Spring International Church. All rights reserved.</p>
+</footer>
+
+<script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+
+    hamburger.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+
+    // Mobile dropdown toggle
+    document.querySelectorAll('.dropdown').forEach(drop => {
+        drop.addEventListener('click', function (e) {
+            if (window.innerWidth <= 900) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+            }
+        });
+    });
+
+    // Form handling
+    document.getElementById("groupForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const requiredFields = ["firstName", "lastName", "email", "phone", "gender"];
+        let allFilled = true;
+
+        requiredFields.forEach(id => {
+            const field = document.getElementById(id);
+            if (!field || field.value.trim() === "") {
+                allFilled = false;
+            }
+        });
+
+        // Check if at least one group is selected
+        const groupCheckboxes = document.querySelectorAll('input[name="group"]:checked');
+        if (groupCheckboxes.length === 0) {
+            allFilled = false;
+            alert("Please select at least one group to join.");
+            return;
+        }
+
+        if (!allFilled) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        const message = document.getElementById("successMessage");
+        message.style.display = "block";
+
+        this.reset();
+
+        setTimeout(() => {
+            message.style.display = "none";
+        }, 4000);
+    });
+</script>
+
+</body>
+</html>
