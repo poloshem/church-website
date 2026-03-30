@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give/Donate - Life Spring Dominion Church International</title>
+    <link rel="icon" href="images/favi.png">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Agency FB', Arial, sans-serif;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: #0066cc;
+            z-index: 1000;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav .logo img { width: 150px; }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-grow: 1;
+            align-items: center;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 8px;
+        }
+
+        .menu a:hover {
+            color: #FFA500;
+            border: 2px solid #FFA500;
+            border-radius: 5px;
+        }
+
+        .dropdown-menu {
+            position: relative;
+        }
+
+        .dropdown-menu-content {
+            display: none;
+            position: absolute;
+            background: rgba(51, 51, 51, 0.9);
+            min-width: 180px;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-menu:hover .dropdown-menu-content {
+            display: block;
+        }
+
+        .dropdown-menu-content a {
+            display: block;
+            padding: 10px;
+            color: white;
+        }
+
+        .dropdown-menu-content a:hover {
+            background: rgba(255, 165, 0, 0.3);
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin: 4px 0;
+        }
+
+        /* MOBILE NAV */
+        @media (max-width: 768px) {
+            .menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: #0066cc;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+                display: none;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .dropdown-menu-content {
+                position: static;
+                display: none;
+                background: #004c99;
+                width: 100%;
+            }
+
+            .dropdown-menu.active .dropdown-menu-content {
+                display: block;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Header */
+        header { background: #333; color: white; padding: 30px 15px; text-align: center; }
+
+        .header-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header-content p {
+            font-size: 1.2em;
+            color: #87CEEB;
+        }
+
+        /* Page Title */
+        .page-title-section {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-title-section h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-title-section p {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 40px 20px;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #FFA500;
+        }
+
+        .payment-section h2 {
+            color: #0066cc;
+            font-size: 2em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-section h2 .icon {
+            font-size: 1.2em;
+        }
+
+        /* Bank Details */
+        .bank-details {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .bank-logo {
+            flex-shrink: 0;
+        }
+
+        .bank-logo img {
+            width: 120px;
+            height: auto;
+        }
+
+        .detail-row {
+            display: flex;
+            padding: 18px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #333;
+            width: 220px;
+            font-size: 1.1em;
+        }
+
+        .detail-value {
+            color: #0066cc;
+            font-size: 1.1em;
+            flex: 1;
+            font-weight: bold;
+        }
+
+        .detail-value.account-number {
+            font-size: 1.4em;
+            color: #FFA500;
+        }
+
+        /* M-Pesa Section */
+        .mpesa-section {
+            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .mpesa-section h2 {
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mpesa-section > p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .mpesa-logo {
+            margin-bottom: 20px;
+        }
+
+        .mpesa-logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .mpesa-info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .mpesa-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.1em;
+        }
+
+        .mpesa-detail:last-child {
+            border-bottom: none;
+        }
+
+        .mpesa-detail-label {
+            font-weight: bold;
+            color: #87CEEB;
+        }
+
+        .mpesa-detail-value {
+            font-weight: bold;
+        }
+
+        .mpesa-detail-value.highlight {
+            font-size: 1.4em;
+            color: #FFA500;
+        }
+
+        /* Instructions */
+        .instructions {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+            color: #333;
+        }
+
+        .instructions h3 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            text-align: center;
+        }
+
+        .instructions ol {
+            padding-left: 25px;
+            line-height: 2.2;
+            font-size: 1.1em;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .instructions strong {
+            color: #FFA500;
+        }
+
+        /* Note Section */
+        .note-section {
+            text-align: center;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .note-section p {
+            color: #666;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        .note-section span {
+            color: #0066cc;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: #FFA500;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .detail-label {
+                width: 100%;
+            }
+
+            .mpesa-detail {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+
+            .page-title-section h1 {
+                font-size: 2em;
+            }
+
+            .payment-section, .mpesa-section {
+                padding: 25px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="top-nav">
+    <div class="logo">
+        <img src="images/favi.png" alt="Church Logo">
+    </div>
+
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="menu" id="menu">
+        <a href="index.htm">Home</a>
+
+        <div class="dropdown-menu">
+            <a href="#">About</a>
+            <div class="dropdown-menu-content">
+                <a href="who.htm">Who we are</a>
+                <a href="what.htm">What we Believe</a>
+                <a href="where.htm">Where we Gather</a>
+                <a href="leaders.htm">Meet our leaders</a>
+            </div>
+        </div>
+
+        <a href="missions.htm">Mission and Outreach</a>
+
+        <div class="dropdown-menu">
+            <a href="#">Our Resources</a>
+            <div class="dropdown-menu-content">
+                <a href="#">Sermons Library</a>
+                <a href="bible.htm">Bible Reading</a>
+                <a href="children.htm">Kids Church Content</a>
+            </div>
+        </div>
+
+        <div class="dropdown-menu">
+            <a href="#">Connect with us</a>
+            <div class="dropdown-menu-content">
+                <a href="#">Fill connect card</a>
+                <a href="#">Sign up for events</a>
+                <a href="#">Participate in Ministry</a>
+                <a href="#">Join Group</a>
+                <a href="reg.htm">Register for Membership</a>
+            </div>
+        </div>
+
+        <a href="#">More ...</a>
+    </div>
+</nav>
+
+<header>
+    <div class="header-content">
+        <h1>Life Spring Dominion Church International</h1>
+        <p>A thriving local church where people encounter Christ</p>
+    </div>
+</header>
+
+<div class="page-title-section">
+    <h1>Give & Donate</h1>
+    <p>Thank you for your generous support of our ministry. Your contributions help us spread the Gospel and serve our community.</p>
+</div>
+
+<div class="container">
+        <!-- Bank Transfer Section -->
+        <div class="payment-section">
+        <h2><span class="icon">🏦</span> Bank Transfer</h2>
+        <div class="bank-details">
+            <div class="bank-logo">
+                <img src="images/equity.png" alt="Equity Bank Logo">
+            </div>
+            <div class="details-content">
+                <div class="detail-row">
+                    <span class="detail-label">Bank Name:</span>
+                    <span class="detail-value">Equity</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Bank Branch:</span>
+                    <span class="detail-value">Oyugis</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Account Name:</span>
+                    <span class="detail-value">Life Spring Dominion Church International</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Account Number:</span>
+                    <span class="detail-value account-number">1500286891651</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- M-Pesa Section -->
+        <div class="mpesa-section">
+        <div class="mpesa-logo">
+            <img src="images/mpesa.png" alt="M-Pesa Logo">
+        </div>
+        <h2>M-Pesa Paybill</h2>
+        <p>Send your donation conveniently via M-Pesa</p>
+        
+        <div class="mpesa-info">
+            <div class="mpesa-detail">
+                <span class="mpesa-detail-label">Paybill Number:</span>
+                <span class="mpesa-detail-value">247247</span>
+            </div>
+            <div class="mpesa-detail">
+                <span class="mpesa-detail-label">Account Line:</span>
+                <span class="mpesa-detail-value highlight">Dominion Spring International Church</span>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 How to Donate via M-Pesa:</h3>
+            <ol>
+                <li>Go to your M-Pesa menu on your phone</li>
+                <li>Select "Lipa na M-Pesa"</li>
+                <li>Choose "Pay Bill"</li>
+                <li>Enter Business Number: <strong>247247</strong></li>
+                <li>Enter Account Number: <strong>Dominion Spring International Church</strong></li>
+                <li>Enter the amount you wish to donate</li>
+                <li>Enter your M-Pesa PIN and confirm</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="note-section">
+        <p><span>God bless you</span> for your generous heart and support of the ministry. Every contribution makes a difference in spreading the Good News.</p>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="index.htm" class="back-btn">← Back to Home</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Dominion Spring International Church. All rights reserved. | <a href="index.htm">Home</a></p>
+</footer>
+
+<script>
+    // Hamburger menu functionality
+    const hamburger = document.getElementById("hamburger");
+    const menu = document.getElementById("menu");
+
+    hamburger.addEventListener("click", () => {
+        menu.classList.toggle("active");
+    });
+
+    // Mobile dropdown toggle
+    document.querySelectorAll(".dropdown-menu").forEach(drop => {
+        drop.addEventListener("click", function (e) {
+            if (window.innerWidth <= 768) {
+                e.stopPropagation();
+                this.classList.toggle("active");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
