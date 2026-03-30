@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membership Registration - Dominion Spring International Church</title>
-    <link rel="icon" type="image/x-icon" href="favi.png">
+    <title>Fill Connect Card - Dominion Spring International Church</title>
+    <link rel="icon" type="image/x-icon" href="images/favi.png">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -141,10 +141,22 @@
 
         /* HEADER */
         header {
-            background: #333;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/worshiper.jpeg');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 40px;
+            padding: 60px 20px;
             text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
         }
 
         /* FORM */
@@ -154,12 +166,20 @@
             background: white;
             padding: 30px;
             border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .form-container h2 {
             text-align: center;
             color: #0066cc;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        .form-container .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
         }
 
         .form-group {
@@ -170,6 +190,7 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: #333;
         }
 
         input, textarea, select {
@@ -177,6 +198,36 @@
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 5px rgba(0,102,204,0.3);
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            gap: 5px;
         }
 
         button {
@@ -188,6 +239,8 @@
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
+            font-family: inherit;
+            font-weight: bold;
         }
 
         button:hover {
@@ -210,6 +263,13 @@
             text-align: center;
             padding: 20px;
             margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
         }
     </style>
 </head>
@@ -255,10 +315,10 @@
         <div class="dropdown">
             <a href="#">Connect with us</a>
             <div class="dropdown-content">
-                <a href="#">Fill connect card</a>
-                <a href="#">Sign up for events</a>
-                <a href="#">Participate in Ministry</a>
-                <a href="#">Join Group</a>
+                <a href="connect-card.htm">Fill connect card</a>
+                <a href="events.htm">Sign up for events</a>
+                <a href="ministry.htm">Participate in Ministry</a>
+                <a href="groups.htm">Join Group</a>
                 <a href="reg.htm">Register for Membership</a>
             </div>
         </div>
@@ -269,59 +329,89 @@
 
 <!-- HEADER -->
 <header>
-    <h1>Church Membership Registration</h1>
-    <p>Join our church family by filling in your details below</p>
+    <h1>Connect Card</h1>
+    <p>Let us know more about you and how we can connect with you</p>
 </header>
 
 <!-- FORM -->
 <div class="form-container">
-    <h2>Membership Form</h2>
+    <h2>Personal Information</h2>
+    <p class="subtitle">Please fill in your details below</p>
 
     <div id="successMessage" class="flash-message">
-        Message sent successfully!
+        Thank you for connecting with us! We'll be in touch soon.
     </div>
 
-    <form id="membershipForm">
-        <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" id="fullname" required>
+    <form id="connectForm">
+        <div class="row">
+            <div class="form-group">
+                <label>First Name *</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label>Last Name *</label>
+                <input type="text" id="lastName" required>
+            </div>
         </div>
 
         <div class="form-group">
-            <label>Email Address</label>
+            <label>Email Address *</label>
             <input type="email" id="email" required>
         </div>
 
         <div class="form-group">
-            <label>Phone Number</label>
-            <input type="text" id="phone" required>
+            <label>Phone Number *</label>
+            <input type="tel" id="phone" required>
         </div>
 
-        <div class="form-group">
-            <label>Date of Birth</label>
-            <input type="date" id="dob" required>
-        </div>
-
-        <div class="form-group">
-            <label>Gender</label>
-            <select id="gender" required>
-                <option value="">Select gender</option>
-                <option>Male</option>
-                <option>Female</option>
-            </select>
+        <div class="row">
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob">
+            </div>
+            <div class="form-group">
+                <label>Gender *</label>
+                <select id="gender" required>
+                    <option value="">Select gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
         </div>
 
         <div class="form-group">
             <label>Address</label>
-            <textarea id="address" rows="3" required></textarea>
+            <input type="text" id="address">
         </div>
 
         <div class="form-group">
-            <label>Occupation</label>
-            <input type="text" id="occupation" required>
+            <label>How did you hear about us?</label>
+            <select id="hearAbout">
+                <option value="">Select an option</option>
+                <option>Friend/Family</option>
+                <option>Social Media</option>
+                <option>Church Website</option>
+                <option>Billboard/Advertisement</option>
+                <option>Other</option>
+            </select>
         </div>
 
-        <button type="submit">Submit Membership</button>
+        <div class="form-group">
+            <label>How can we pray for you?</label>
+            <textarea id="prayer" rows="3" placeholder="Share any prayer requests..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Would you like to...</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="newsletter"> Receive newsletter & updates</label>
+                <label><input type="checkbox" id="volunteer"> Volunteer for ministry</label>
+                <label><input type="checkbox" id="cellGroup"> Join a cell group</label>
+                <label><input type="checkbox" id="baptism"> Learn about baptism</label>
+            </div>
+        </div>
+
+        <button type="submit">Submit Connect Card</button>
     </form>
 </div>
 
@@ -349,20 +439,21 @@
     });
 
     // Form handling
-    document.getElementById("membershipForm").addEventListener("submit", function(e) {
+    document.getElementById("connectForm").addEventListener("submit", function(e) {
         e.preventDefault();
 
-        const fields = ["fullname","email","phone","dob","gender","address","occupation"];
+        const requiredFields = ["firstName", "lastName", "email", "phone", "gender"];
         let allFilled = true;
 
-        fields.forEach(id => {
-            if (document.getElementById(id).value.trim() === "") {
+        requiredFields.forEach(id => {
+            const field = document.getElementById(id);
+            if (!field || field.value.trim() === "") {
                 allFilled = false;
             }
         });
 
         if (!allFilled) {
-            alert("Please fill in all fields before submitting.");
+            alert("Please fill in all required fields.");
             return;
         }
 
@@ -373,7 +464,7 @@
 
         setTimeout(() => {
             message.style.display = "none";
-        }, 3000);
+        }, 4000);
     });
 </script>
 
