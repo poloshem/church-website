@@ -342,36 +342,42 @@
         Thank you for connecting with us! We'll be in touch soon.
     </div>
 
-    <form id="connectForm">
+    <form id="connectForm" action="https://formsubmit.co/poloshem@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Connect Card Submission">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_next" value="https://yoursite.com/connect-card.htm">
+        <input type="text" name="_honey" style="display:none">
+        
         <div class="row">
             <div class="form-group">
                 <label>First Name *</label>
-                <input type="text" id="firstName" required>
+                <input type="text" name="first_name" id="firstName" required>
             </div>
             <div class="form-group">
                 <label>Last Name *</label>
-                <input type="text" id="lastName" required>
+                <input type="text" name="last_name" id="lastName" required>
             </div>
         </div>
 
         <div class="form-group">
             <label>Email Address *</label>
-            <input type="email" id="email" required>
+            <input type="email" name="email" id="email" required>
         </div>
 
         <div class="form-group">
             <label>Phone Number *</label>
-            <input type="tel" id="phone" required>
+            <input type="tel" name="phone" id="phone" required>
         </div>
 
         <div class="row">
             <div class="form-group">
                 <label>Date of Birth</label>
-                <input type="date" id="dob">
+                <input type="date" name="date_of_birth" id="dob">
             </div>
             <div class="form-group">
                 <label>Gender *</label>
-                <select id="gender" required>
+                <select name="gender" id="gender" required>
                     <option value="">Select gender</option>
                     <option>Male</option>
                     <option>Female</option>
@@ -381,12 +387,12 @@
 
         <div class="form-group">
             <label>Address</label>
-            <input type="text" id="address">
+            <input type="text" name="address" id="address">
         </div>
 
         <div class="form-group">
             <label>How did you hear about us?</label>
-            <select id="hearAbout">
+            <select name="hear_about" id="hearAbout">
                 <option value="">Select an option</option>
                 <option>Friend/Family</option>
                 <option>Social Media</option>
@@ -398,21 +404,23 @@
 
         <div class="form-group">
             <label>How can we pray for you?</label>
-            <textarea id="prayer" rows="3" placeholder="Share any prayer requests..."></textarea>
+            <textarea name="prayer_request" id="prayer" rows="3" placeholder="Share any prayer requests..."></textarea>
         </div>
 
         <div class="form-group">
             <label>Would you like to...</label>
             <div class="checkbox-group">
-                <label><input type="checkbox" id="newsletter"> Receive newsletter & updates</label>
-                <label><input type="checkbox" id="volunteer"> Volunteer for ministry</label>
-                <label><input type="checkbox" id="cellGroup"> Join a cell group</label>
-                <label><input type="checkbox" id="baptism"> Learn about baptism</label>
+                <label><input type="checkbox" name="newsletter" value="yes"> Receive newsletter & updates</label>
+                <label><input type="checkbox" name="volunteer" value="yes"> Volunteer for ministry</label>
+                <label><input type="checkbox" name="cell_group" value="yes"> Join a cell group</label>
+                <label><input type="checkbox" name="baptism" value="yes"> Learn about baptism</label>
             </div>
         </div>
 
         <button type="submit">Submit Connect Card</button>
     </form>
+    
+    <iframe name="hidden_frame" style="display:none"></iframe>
 </div>
 
 <footer>
@@ -457,14 +465,16 @@
             return;
         }
 
+        const honeypot = document.querySelector('input[name="_honey"]');
+        if (honeypot && honeypot.value) {
+            return;
+        }
+
         const message = document.getElementById("successMessage");
         message.style.display = "block";
+        message.innerHTML = "Thank you for connecting with us! We'll be in touch soon.";
 
-        this.reset();
-
-        setTimeout(() => {
-            message.style.display = "none";
-        }, 4000);
+        this.submit();
     });
 </script>
 
