@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What We Believe - Life Spring Dominion Church International</title>
+    <title>YouTube - Life Spring Dominion Church International</title>
     <link rel="icon" type="image/x-icon" href="favi.png">
 
     <style>
@@ -19,7 +19,6 @@
             background-color: #f4f4f4;
         }
 
-        /* NAVBAR */
         .top-nav {
             position: fixed;
             top: 0;
@@ -38,7 +37,6 @@
             width: 150px;
         }
 
-        /* MENU */
         .menu {
             display: flex;
             align-items: center;
@@ -59,7 +57,6 @@
             border-radius: 5px;
         }
 
-        /* DROPDOWN */
         .dropdown {
             position: relative;
         }
@@ -88,7 +85,6 @@
             display: block;
         }
 
-        /* HAMBURGER */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -102,7 +98,6 @@
             margin: 4px 0;
         }
 
-        /* MOBILE */
         @media (max-width: 900px) {
             :root {
                 --navbar-height: 70px;
@@ -140,54 +135,39 @@
             }
         }
 
-        /* HEADER */
         header {
             background: #333;
             color: white;
-            padding: 30px 15px;
+            padding: 40px;
             text-align: center;
         }
 
-        /* CONTENT */
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
+        .youtube-container {
+            max-width: 1100px;
+            margin: 40px auto;
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 8px;
-            line-height: 1.7;
         }
 
-        h2 {
+        .youtube-container h2 {
+            text-align: center;
             color: #0066cc;
             margin-bottom: 15px;
         }
 
-        h3 {
-            margin-top: 20px;
-            color: #333;
+        .youtube-frame {
+            width: 100%;
+            height: 700px;
+            border: none;
         }
-
-        p { margin-bottom: 10px; }
 
         footer {
             background: #FFA500;
             color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 30px;
-        }
-
-        /* SCROLL ANIMATION */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -199,7 +179,7 @@
         <img src="images/favi.png" alt="Church Logo">
     </div>
 
-    <div class="hamburger" id="hamburger" aria-label="Menu">
+    <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
         <span></span>
@@ -245,26 +225,20 @@
 </nav>
 
 <header>
-    <h1>What We Believe</h1>
-    <p>Doctrinal Statement of Life Spring Dominion Church International</p>
+    <h1>Sermons & Messages</h1>
+    <p>Watch our latest sermons and church messages on YouTube</p>
 </header>
 
-<div class="container">
+<div class="youtube-container">
+    <h2>Our YouTube Channel</h2>
 
-    <h2 class="fade-in">Statement of Faith</h2>
-    <p class="fade-in">
-        We affirm that the Holy Bible is the inspired, infallible, and final authority in all matters of faith and conduct.
-    </p>
-
-    <h3 class="fade-in">The Godhead</h3>
-    <p class="fade-in">We believe in one God existing eternally in three persons: Father, Son, and Holy Spirit.</p>
-
-    <h3 class="fade-in">Jesus Christ</h3>
-    <p class="fade-in">Jesus Christ is the Son of God, fully divine and fully human, born of a virgin, and the only Savior of mankind.</p>
-
-    <h3 class="fade-in">Sin and Salvation</h3>
-    <p class="fade-in">All humanity is sinful, and salvation is only through repentance and faith in Jesus Christ.</p>
-
+    <iframe 
+        class="youtube-frame"
+        src="https://www.youtube.com/embed/videoseries?list=YOUR_PLAYLIST_ID"
+        title="Life Spring Dominion Church YouTube Channel"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
 </div>
 
 <footer>
@@ -272,7 +246,6 @@
 </footer>
 
 <script>
-    // Hamburger toggle
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
 
@@ -280,7 +253,6 @@
         menu.classList.toggle('active');
     });
 
-    // Mobile dropdown toggle
     document.querySelectorAll('.dropdown').forEach(drop => {
         drop.addEventListener('click', function (e) {
             if (window.innerWidth <= 900) {
@@ -288,21 +260,6 @@
                 this.classList.toggle('active');
             }
         });
-    });
-
-    // Scroll animations
-    document.addEventListener("DOMContentLoaded", function () {
-        const elements = document.querySelectorAll(".fade-in");
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
-            });
-        }, { threshold: 0.1 });
-
-        elements.forEach(el => observer.observe(el));
     });
 </script>
 
