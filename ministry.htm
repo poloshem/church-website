@@ -418,36 +418,41 @@
         Thank you for your interest in serving! We'll contact you soon.
     </div>
 
-    <form id="ministryForm">
+    <form id="ministryForm" action="https://formsubmit.co/poloshem@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Ministry Participation Request">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="box">
+        <input type="text" name="_honey" style="display:none">
+        
         <div class="row">
             <div class="form-group">
                 <label>First Name *</label>
-                <input type="text" id="firstName" required>
+                <input type="text" name="first_name" id="firstName" required>
             </div>
             <div class="form-group">
                 <label>Last Name *</label>
-                <input type="text" id="lastName" required>
+                <input type="text" name="last_name" id="lastName" required>
             </div>
         </div>
 
         <div class="form-group">
             <label>Email Address *</label>
-            <input type="email" id="email" required>
+            <input type="email" name="email" id="email" required>
         </div>
 
         <div class="form-group">
             <label>Phone Number *</label>
-            <input type="tel" id="phone" required>
+            <input type="tel" name="phone" id="phone" required>
         </div>
 
         <div class="form-group">
             <label>Date of Birth</label>
-            <input type="date" id="dob">
+            <input type="date" name="date_of_birth" id="dob">
         </div>
 
         <div class="form-group">
             <label>Gender *</label>
-            <select id="gender" required>
+            <select name="gender" id="gender" required>
                 <option value="">Select gender</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -456,7 +461,7 @@
 
         <div class="form-group">
             <label>How long have you been attending our church? *</label>
-            <select id="membershipDuration" required>
+            <select name="membership_duration" id="membershipDuration" required>
                 <option value="">Select duration</option>
                 <option>First time visitor</option>
                 <option>Less than 6 months</option>
@@ -482,12 +487,12 @@
 
         <div class="form-group">
             <label>Do you have any special skills or talents?</label>
-            <textarea id="skills" rows="3" placeholder="E.g., playing musical instruments, teaching, counseling, cooking, etc."></textarea>
+            <textarea name="skills" id="skills" rows="3" placeholder="E.g., playing musical instruments, teaching, counseling, cooking, etc."></textarea>
         </div>
 
         <div class="form-group">
             <label>Previous ministry experience</label>
-            <textarea id="experience" rows="3" placeholder="Tell us about any previous church or community service experience..."></textarea>
+            <textarea name="experience" id="experience" rows="3" placeholder="Tell us about any previous church or community service experience..."></textarea>
         </div>
 
         <div class="form-group">
@@ -550,18 +555,20 @@
         }
 
         if (!allFilled) {
-            alert("Please fill in all required fields.");
+            alert("Please select at least one ministry area of interest.");
+            return;
+        }
+
+        const honeypot = document.querySelector('input[name="_honey"]');
+        if (honeypot && honeypot.value) {
             return;
         }
 
         const message = document.getElementById("successMessage");
         message.style.display = "block";
+        message.innerHTML = "Thank you for your interest in serving! We'll contact you soon.";
 
-        this.reset();
-
-        setTimeout(() => {
-            message.style.display = "none";
-        }, 4000);
+        this.submit();
     });
 </script>
 

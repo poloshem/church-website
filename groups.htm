@@ -469,36 +469,41 @@
         You have successfully joined the group! We will contact you with meeting details.
     </div>
 
-    <form id="groupForm">
+    <form id="groupForm" action="https://formsubmit.co/poloshem@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Group Join Request">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="box">
+        <input type="text" name="_honey" style="display:none">
+        
         <div class="row">
             <div class="form-group">
                 <label>First Name *</label>
-                <input type="text" id="firstName" required>
+                <input type="text" name="first_name" id="firstName" required>
             </div>
             <div class="form-group">
                 <label>Last Name *</label>
-                <input type="text" id="lastName" required>
+                <input type="text" name="last_name" id="lastName" required>
             </div>
         </div>
 
         <div class="form-group">
             <label>Email Address *</label>
-            <input type="email" id="email" required>
+            <input type="email" name="email" id="email" required>
         </div>
 
         <div class="form-group">
             <label>Phone Number *</label>
-            <input type="tel" id="phone" required>
+            <input type="tel" name="phone" id="phone" required>
         </div>
 
         <div class="row">
             <div class="form-group">
                 <label>Date of Birth</label>
-                <input type="date" id="dob">
+                <input type="date" name="date_of_birth" id="dob">
             </div>
             <div class="form-group">
                 <label>Gender *</label>
-                <select id="gender" required>
+                <select name="gender" id="gender" required>
                     <option value="">Select gender</option>
                     <option>Male</option>
                     <option>Female</option>
@@ -508,7 +513,7 @@
 
         <div class="form-group">
             <label>Address/Location</label>
-            <input type="text" id="address" placeholder="Your residential area or nearest landmark">
+            <input type="text" name="address" id="address" placeholder="Your residential area or nearest landmark">
         </div>
 
         <div class="form-group">
@@ -527,7 +532,7 @@
 
         <div class="form-group">
             <label>Preferred meeting day/time</label>
-            <select id="preferredTime">
+            <select name="preferred_time" id="preferredTime">
                 <option value="">Select preferred time</option>
                 <option>Weekday mornings</option>
                 <option>Weekday afternoons</option>
@@ -541,7 +546,7 @@
 
         <div class="form-group">
             <label>Are you a member of this church?</label>
-            <select id="memberStatus">
+            <select name="member_status" id="memberStatus">
                 <option value="">Select status</option>
                 <option>Yes, I am a member</option>
                 <option>No, but I attend regularly</option>
@@ -551,7 +556,7 @@
 
         <div class="form-group">
             <label>Tell us about yourself</label>
-            <textarea id="about" rows="3" placeholder="Briefly tell us about yourself and what you hope to gain from joining a group..."></textarea>
+            <textarea name="about" id="about" rows="3" placeholder="Briefly tell us about yourself and what you hope to gain from joining a group..."></textarea>
         </div>
 
         <button type="submit">Join Group</button>
@@ -608,14 +613,16 @@
             return;
         }
 
+        const honeypot = document.querySelector('input[name="_honey"]');
+        if (honeypot && honeypot.value) {
+            return;
+        }
+
         const message = document.getElementById("successMessage");
         message.style.display = "block";
+        message.innerHTML = "You have successfully joined the group! We will contact you with meeting details.";
 
-        this.reset();
-
-        setTimeout(() => {
-            message.style.display = "none";
-        }, 4000);
+        this.submit();
     });
 </script>
 
