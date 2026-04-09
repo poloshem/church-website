@@ -346,7 +346,7 @@
         <input type="hidden" name="_subject" value="New Connect Card Submission">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="box">
-        <input type="hidden" name="_next" value="https://poloshem.github.io/church-website/connect-card.htm">
+        <input type="hidden" name="_next" value="https://poloshem.github.io/church-website/connect-card.htm?submitted=true">
         <input type="text" name="_honey" style="display:none">
         
         <div class="row">
@@ -446,6 +446,17 @@
         });
     });
 
+    // Check for submitted parameter to show success message
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('submitted') === 'true') {
+        const message = document.getElementById('successMessage');
+        message.style.display = 'block';
+        message.innerHTML = 'Thank you for connecting with us! We\'ll be in touch soon.';
+        if (window.history) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }
+
     // Form handling
     document.getElementById("connectForm").addEventListener("submit", function(e) {
         e.preventDefault();
@@ -470,11 +481,6 @@
             return;
         }
 
-        const message = document.getElementById("successMessage");
-        message.style.display = "block";
-        message.innerHTML = "Thank you for connecting with us! We'll be in touch soon.";
-
-        this.reset();
         this.submit();
     });
 </script>
