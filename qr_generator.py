@@ -1,7 +1,7 @@
 import qrcode
 
 # Church website base URL (replace with actual deployed URL after deployment)
-BASE_URL = "https://poloshem.github.io/church-website/"
+BASE_URL = "https://www.lifespringdominionchurchinter.co.ke/"
 
 def generate_home_qr():
     """Generate a QR code for the home page."""
