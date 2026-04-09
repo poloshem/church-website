@@ -336,6 +336,11 @@
 
         .training-slide.active { display: block; }
 
+        .training-container {
+            position: relative;
+            min-height: 200px;
+        }
+
         .training-slide h3 {
             color: #0066cc;
             font-size: 24px;
@@ -492,10 +497,12 @@
 <!-- Training Carousel -->
 <div class="training-carousel">
     <h2>Special Training Events</h2>
-    <div class="training-slide active">
-        <div class="date-badge">22nd - 26th September 2026</div>
-        <h3>5 Days Church Leadership And Financial Stewardship Training</h3>
-        <p>A comprehensive training program for church leaders focused on leadership principles and financial stewardship excellence.</p>
+    <div class="training-container" id="trainingContainer">
+        <div class="training-slide active">
+            <div class="date-badge">22nd - 26th September 2026</div>
+            <h3>5 Days Church Leadership And Financial Stewardship Training</h3>
+            <p>A comprehensive training program for church leaders focused on leadership principles and financial stewardship excellence.</p>
+        </div>
     </div>
 </div>
 
@@ -673,6 +680,17 @@
         currentIndex = (currentIndex + 1) % slides.length;
         slides[currentIndex].classList.add("active");
     }, 3000);
+
+    // Training Carousel functionality
+    const trainingSlides = document.querySelectorAll(".training-slide");
+    let currentTrainingIndex = 0;
+    if (trainingSlides.length > 1) {
+        setInterval(() => {
+            trainingSlides[currentTrainingIndex].classList.remove("active");
+            currentTrainingIndex = (currentTrainingIndex + 1) % trainingSlides.length;
+            trainingSlides[currentTrainingIndex].classList.add("active");
+        }, 4000);
+    }
 
     // Show donate button after 5 seconds
     setTimeout(() => {
