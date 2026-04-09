@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.lifespringdominionchurch.org/sitemap.xml
+Sitemap: https://www.lifespringdominionchurchinter.co.ke/sitemap.xml
