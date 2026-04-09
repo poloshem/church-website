@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube - Life Spring Dominion Church International</title>
+    <title>Sermons Library - Life Spring Dominion Church International</title>
     <link rel="icon" type="image/x-icon" href="images/favi.png">
 
     <style>
@@ -51,7 +51,7 @@
             padding: 5px 8px;
         }
 
-        .menu a:hover {
+        .menu a:hover, .menu a.active {
             color: #FFA500;
             border: 2px solid #FFA500;
             border-radius: 5px;
@@ -144,24 +144,82 @@
             text-align: center;
         }
 
-        .youtube-container {
-            max-width: 1100px;
+        .sermons-container {
+            max-width: 1000px;
             margin: 40px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 0 20px;
         }
 
-        .youtube-container h2 {
+        .intro-text {
             text-align: center;
             color: #0066cc;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 1.2em;
         }
 
-        .youtube-frame {
-            width: 100%;
-            height: 700px;
-            border: none;
+        .sermons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .sermon-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sermon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .sermon-date {
+            background: #FFA500;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .sermon-card h3 {
+            color: #0066cc;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .sermon-card p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .download-link {
+            display: inline-block;
+            background: #0066cc;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .download-link:hover {
+            background: #004d99;
+        }
+
+        .no-sermons {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
         }
 
         footer {
@@ -205,7 +263,7 @@
         <div class="dropdown">
             <a href="#">Our Resources</a>
             <div class="dropdown-content">
-                <a href="sermons.htm">Sermons Library</a>
+                <a href="sermons.htm" class="active">Sermons Library</a>
                 <a href="bible.htm">Bible Reading</a>
                 <a href="children.htm">Kids Church Content</a>
             </div>
@@ -224,7 +282,7 @@
 
         <div class="dropdown">
             <a href="downloads.htm">Downloads</a>
-            <div class="dropdown-menu-content">
+            <div class="dropdown-content">
                 <a href="gallery.htm">Gallery</a>
             </div>
         </div>
@@ -232,24 +290,48 @@
 </nav>
 
 <header>
-    <h1>Sermons & Messages</h1>
-    <p>Watch our latest sermons and church messages on YouTube</p>
+    <h1>Sermons Library</h1>
+    <p>Watch and revisit messages from recent services and special programs</p>
 </header>
 
-<div class="youtube-container">
-    <h2>Our YouTube Channel</h2>
+<div class="sermons-container">
+    <p class="intro-text">Download sermon recordings from our services. Click on any sermon below to download or listen.</p>
 
-    <iframe 
-        class="youtube-frame"
-        src="https://www.youtube.com/embed/p90_HNS5hMc"
-        title="Life Spring Dominion Church YouTube Channel"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
+    <div class="sermons-grid">
+        <!-- Placeholder sermon entries - add your actual sermon files to the sermons folder -->
+        
+        <div class="sermon-card">
+            <span class="sermon-date">April 2026</span>
+            <h3>Sunday Service Message</h3>
+            <p>Latest Sunday morning worship message from Life Spring Dominion Church.</p>
+            <a href="sermons/sunday-service-april-2026.mp3" class="download-link" download>Download Audio</a>
+        </div>
+
+        <div class="sermon-card">
+            <span class="sermon-date">March 2026</span>
+            <h3>Youth Fellowship Message</h3>
+            <p>Powerful message from our Youth Fellowship gathering.</p>
+            <a href="sermons/youth-fellowship-march-2026.mp3" class="download-link" download>Download Audio</a>
+        </div>
+
+        <div class="sermon-card">
+            <span class="sermon-date">February 2026</span>
+            <h3>Bible Study Series</h3>
+            <p>In-depth Bible study session on key biblical principles.</p>
+            <a href="sermons/bible-study-feb-2026.mp3" class="download-link" download>Download Audio</a>
+        </div>
+
+        <div class="sermon-card">
+            <span class="sermon-date">January 2026</span>
+            <h3>New Year Service</h3>
+            <p>Inspiring message to start the new year with faith and purpose.</p>
+            <a href="sermons/new-year-service-2026.mp3" class="download-link" download>Download Audio</a>
+        </div>
+    </div>
 </div>
 
 <footer>
-    <p>&copy; 2024 Life Spring Dominion Church International. All rights reserved.</p>
+    <p>&copy; 2026 Life Spring Dominion Church International. All rights reserved.</p>
 </footer>
 
 <script>
