@@ -482,10 +482,12 @@
                 
                 // Get all videos from channel (remove strict author filter for reliability)
                 data.items.forEach(item => {
-                    // Extract video ID from various link formats
+                    // Extract video ID from various link formats (watch?v=, /shorts/, etc.)
                     let videoId = null;
                     if (item.link) {
-                        const match = item.link.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+                        // Match either ?v=VIDEO_ID or /shorts/VIDEO_ID
+                        const match = item.link.match(/[?&]v=([a-zA-Z0-9_-]{11})/) 
+                                   || item.link.match(/\/shorts\/([a-zA-Z0-9_-]{11})/);
                         videoId = match ? match[1] : null;
                     }
                     
