@@ -331,16 +331,17 @@
             margin-top: 5px;
         }
 
-        .playlist-embed {
-            margin-bottom: 30px;
-            border-radius: 12px;
-            overflow: hidden;
+        .no-videos {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 16px;
         }
 
-        .playlist-embed iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
+        .loading-message {
+            text-align: center;
+            padding: 40px;
+            color: #666;
         }
 
         footer {
@@ -354,10 +355,6 @@
         @media (max-width: 768px) {
             .youtube-container {
                 padding: 15px;
-            }
-            
-            .playlist-embed iframe {
-                height: 250px;
             }
         }
     </style>
@@ -427,26 +424,16 @@
         <a href="https://www.youtube.com/@LifeSpringDominionChurchintern" target="_blank">Subscribe on YouTube</a>
     </div>
 
-    <!-- Playlist Embed -->
-    <div class="playlist-embed">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=UUYTgp05dEybM38ijR48bByQ" 
-                title="Life Spring Dominion Church Videos" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
-    </div>
-
-    <div class="section-title">Latest Videos</div>
-    
     <!-- Main Video Player -->
     <div class="main-player" id="main-player">
         <button class="close-player" onclick="closePlayer()">&times;</button>
         <iframe id="player-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+
+    <div class="loading-message" id="loading">Loading videos from our channel...</div>
     
-    <div class="video-grid" id="video-grid">
-        <!-- Videos loaded via YouTube Data API - manual list for fallback -->
-    </div>
+    <div class="section-title">Latest Videos from Our Channel</div>
+    <div class="video-grid" id="video-grid"></div>
 </div>
 
 <footer>
@@ -470,47 +457,47 @@
         });
     });
 
-    // Your channel's upload playlist ID (UU prefix = uploads)
-    const UPLOADS_PLAYLIST_ID = 'UUYTgp05dEybM38ijR48bByQ';
+    // Your channel ID
+    const CHANNEL_ID = 'UCYTgp05dEybM38ijR48bByQ';
 
-    // Fetch videos using CORS proxy
+    // Fetch videos from YouTube RSS feed using rss2json API
     async function fetchVideos() {
-        // Using a CORS proxy to fetch the RSS feed
-        const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${UPLOADS_PLAYLIST_ID.replace('UU', 'UC')}`);
+        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
         
         try {
-            const response = await fetch(proxyUrl);
+            const response = await fetch(apiUrl);
             const data = await response.json();
             
-            if (data.contents) {
-                const parser = new DOMParser();
-                const xml = parser.parseFromString(data.contents, 'text/xml');
-                
-                const entries = xml.querySelectorAll('entry');
+            if (data.status === 'ok' && data.items) {
                 const videos = [];
                 
-                entries.forEach(entry => {
-                    const videoId = entry.querySelector('videoId')?.textContent;
-                    const title = entry.querySelector('title')?.textContent;
-                    const thumbnail = entry.querySelector('thumbnail')?.getAttribute('url');
-                    const published = entry.querySelector('published')?.textContent;
+                data.items.forEach(item => {
+                    // Extract video ID from the link
+                    const videoId = item.link ? item.link.split('v=')[1] : null;
+                    const title = item.title;
+                    const thumbnail = item.thumbnail;
+                    const pubDate = item.pubDate;
                     
-                    if (videoId && title) {
+                    // Verify this video belongs to our channel by checking author
+                    if (videoId && title && item.author === 'Life Spring Dominion Church international oyugis ') {
                         videos.push({
-                            id: videoId,
+                            id: videoId.split('&')[0], // Remove any additional params
                             title: title,
-                            thumbnail: thumbnail || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-                            date: published ? new Date(published).toLocaleDateString() : ''
+                            thumbnail: thumbnail,
+                            date: pubDate ? new Date(pubDate).toLocaleDateString() : ''
                         });
                     }
                 });
                 
+                document.getElementById('loading').style.display = 'none';
                 renderVideos(videos);
+            } else {
+                throw new Error('Invalid response');
             }
         } catch (error) {
-            console.log('Using fallback video list');
-            // Fallback to manual list if fetch fails
-            renderFallbackVideos();
+            console.error('Error fetching videos:', error);
+            document.getElementById('loading').innerHTML = '<div class="no-videos">Unable to load videos. <a href="https://www.youtube.com/@LifeSpringDominionChurchintern" target="_blank">Visit our YouTube channel</a></div>';
         }
     }
 
@@ -518,71 +505,41 @@
         const grid = document.getElementById('video-grid');
         
         if (videos.length === 0) {
-            renderFallbackVideos();
+            grid.innerHTML = '<div class="no-videos">No videos found on our channel yet.</div>';
             return;
         }
         
         videos.forEach(video => {
-            const card = createVideoCard(video);
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            
+            card.innerHTML = `
+                <div class="video-thumb">
+                    <img src="${video.thumbnail}" alt="${video.title}">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">${video.title}</div>
+                    <div class="video-date">${video.date}</div>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => {
+                playVideo(card, video.id);
+            });
+            
             grid.appendChild(card);
         });
-    }
-
-    function renderFallbackVideos() {
-        // Fallback sample videos - replace with your actual video IDs from your channel
-        const sampleVideos = [
-            { id: 'tv3xEEfO_vY', title: 'Latest Service', thumbnail: 'https://img.youtube.com/vi/tv3xEEfO_vY/hqdefault.jpg', date: '' },
-            { id: 'dQw4w9WgXcQ', title: 'Sunday Service', thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', date: '' },
-            { id: 'KJqpjsqJN_s', title: 'Bible Study', thumbnail: 'https://img.youtube.com/vi/KJqpjsqJN_s/hqdefault.jpg', date: '' },
-            { id: 'L_jWHffIx5E', title: 'Worship Session', thumbnail: 'https://img.youtube.com/vi/L_jWHffIx5E/hqdefault.jpg', date: '' },
-            { id: 'JGwWNGJdvx8', title: 'Youth Fellowship', thumbnail: 'https://img.youtube.com/vi/JGwWNGJdvx8/hqdefault.jpg', date: '' },
-            { id: 'kJQP7kjIx5E', title: 'Special Event', thumbnail: 'https://img.youtube.com/vi/kJQP7kjIx5E/hqdefault.jpg', date: '' }
-        ];
-        
-        const grid = document.getElementById('video-grid');
-        
-        sampleVideos.forEach(video => {
-            const card = createVideoCard(video);
-            grid.appendChild(card);
-        });
-    }
-
-    function createVideoCard(video) {
-        const card = document.createElement('div');
-        card.className = 'video-card';
-        
-        card.innerHTML = `
-            <div class="video-thumb">
-                <img src="${video.thumbnail}" alt="${video.title}">
-                <div class="play-overlay"></div>
-            </div>
-            <div class="video-info">
-                <div class="video-title">${video.title}</div>
-                <div class="video-date">${video.date}</div>
-            </div>
-        `;
-        
-        card.addEventListener('click', () => {
-            playVideo(card, video.id);
-        });
-        
-        return card;
     }
 
     function playVideo(card, videoId) {
         const mainPlayer = document.getElementById('main-player');
         const playerIframe = document.getElementById('player-iframe');
         
-        // Set the video source
         playerIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-        
-        // Show the main player
         mainPlayer.classList.add('active');
-        
-        // Scroll to the player
         mainPlayer.scrollIntoView({ behavior: 'smooth' });
         
-        // Highlight the selected card
         document.querySelectorAll('.video-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
     }
@@ -593,7 +550,6 @@
         
         playerIframe.src = '';
         mainPlayer.classList.remove('active');
-        
         document.querySelectorAll('.video-card').forEach(c => c.classList.remove('selected'));
     }
 
