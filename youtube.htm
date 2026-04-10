@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube - Life Spring Dominion Church International</title>
+    <title>YouTube Channel - Life Spring Dominion Church International</title>
     <link rel="icon" type="image/x-icon" href="images/favi.png">
 
     <style>
@@ -158,132 +158,105 @@
             margin-bottom: 15px;
         }
 
-        .video-player {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            border-radius: 8px;
-            margin-bottom: 30px;
+        .section-title {
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #FFA500;
+            margin-bottom: 10px;
         }
 
-        .video-player iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
+            padding: 20px;
         }
 
-        .video-card {
-            background: #f9f9f9;
-            border-radius: 8px;
+        .yt-card {
+            background: #1c1c1c;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid transparent;
+            transition: transform 0.3s ease;
         }
 
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .yt-card:hover {
+            transform: scale(1.03);
         }
 
-        .video-card.active {
-            border-color: #FFA500;
-        }
-
-        .video-card-thumb {
+        .thumb-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
         }
 
-        .video-card-thumb img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .yt-thumb img {
             width: 100%;
-            height: 100%;
+            display: block;
+            aspect-ratio: 16/9;
             object-fit: cover;
         }
 
-        .video-card-thumb .play-icon {
+        .live-badge {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0,0,0,0.7);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: red;
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 12px;
+            top: 10px;
+            left: 10px;
+            border-radius: 4px;
         }
 
-        .video-card-thumb .play-icon::after {
-            content: '▶';
-            color: white;
-            font-size: 20px;
-            margin-left: 4px;
+        .yt-card iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
         }
 
-        .video-card-info {
-            padding: 15px;
+        .yt-card-info {
+            padding: 12px;
         }
 
-        .video-card-title {
+        .yt-card-title {
+            color: #fff;
             font-size: 14px;
             font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .video-card-meta {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .video-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .video-tab {
-            padding: 10px 20px;
-            background: #f0f0f0;
+        #load-more {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 20px;
             border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .video-tab:hover {
-            background: #e0e0e0;
-        }
-
-        .video-tab.active {
             background: #0066cc;
-            color: white;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        #load-more:hover {
+            background: #FFA500;
+        }
+
+        .error-message {
+            text-align: center;
+            color: red;
+            padding: 40px;
+            font-size: 16px;
+        }
+
+        .loading-message {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 16px;
         }
 
         footer {
@@ -353,14 +326,10 @@
 
 <div class="youtube-container">
     <h2>Our YouTube Channel</h2>
-
-    <div class="video-player" id="videoPlayer">
-        <iframe id="mainPlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-
-    <div class="video-tabs" id="videoTabs"></div>
-
-    <div class="video-grid" id="videoGrid"></div>
+    <div id="loading" class="loading-message">Loading videos...</div>
+    <div id="live-section"></div>
+    <div id="video-section"></div>
+    <button id="load-more" style="display: none;">Load More</button>
 </div>
 
 <footer>
@@ -384,110 +353,159 @@
         });
     });
 
-    const videos = [
-        {
-            id: 'p90_HNS5hMc',
-            title: 'Sunday Service Live Stream - Life Spring Dominion Church',
-            category: 'Sermons',
-            date: 'Recent'
-        },
-        {
-            id: 'dQw4w9WgXcQ',
-            title: 'Youth Fellowship Service',
-            category: 'Youth',
-            date: '1 week ago'
-        },
-        {
-            id: 'KJqpjsqJN_s',
-            title: 'Bible Study: Understanding Gods Word',
-            category: 'Bible Study',
-            date: '2 weeks ago'
-        },
-        {
-            id: 'L_jWHffIx5E',
-            title: 'Worship Session - Praise & Adoration',
-            category: 'Worship',
-            date: '3 weeks ago'
-        },
-        {
-            id: 'JGwWNGJdvx8',
-            title: 'Community Outreach Program',
-            category: 'Outreach',
-            date: '1 month ago'
-        },
-        {
-            id: 'kJQP7kjIx5E',
-            title: 'Womens Conference Highlights',
-            category: 'Special Events',
-            date: '1 month ago'
+    /* YOUR CONFIG */
+    const API_KEY = "AIzaSyB5tff7Z3Xi6e1WdZp6hwtcF_ePUg6zxsU";
+    const HANDLE = "LifeSpringDominionChurchintern";
+
+    let CHANNEL_ID = "";
+    let nextPageToken = "";
+
+    /* Resolve handle → Channel ID */
+    async function getChannelId() {
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${HANDLE}&key=${API_KEY}`);
+        const data = await res.json();
+
+        if (!data.items || data.items.length === 0) {
+            throw new Error("Channel not found");
         }
-    ];
 
-    const categories = ['All', ...new Set(videos.map(v => v.category))];
-    let activeCategory = 'All';
-    let activeVideo = videos[0];
-
-    function getYouTubeThumb(videoId) {
-        return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        return data.items[0].id;
     }
 
-    function loadVideo(video) {
-        activeVideo = video;
-        document.getElementById('mainPlayer').src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
-        
-        document.querySelectorAll('.video-card').forEach(card => {
-            card.classList.remove('active');
-        });
-        document.querySelector(`[data-id="${video.id}"]`).classList.add('active');
-        
-        document.getElementById('videoPlayer').scrollIntoView({ behavior: 'smooth' });
+    /* Fetch LIVE streams */
+    async function fetchLiveVideos() {
+        const res = await fetch(
+            `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&eventType=live&type=video`
+        );
+
+        const data = await res.json();
+        return data.items || [];
     }
 
-    function renderTabs() {
-        const tabsContainer = document.getElementById('videoTabs');
-        tabsContainer.innerHTML = categories.map(cat => `
-            <button class="video-tab ${cat === activeCategory ? 'active' : ''}" data-category="${cat}">${cat}</button>
-        `).join('');
+    /* Fetch normal videos */
+    async function fetchVideos(pageToken = "") {
+        const res = await fetch(
+            `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=6${pageToken ? "&pageToken=" + pageToken : ""}`
+        );
 
-        tabsContainer.querySelectorAll('.video-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                activeCategory = tab.dataset.category;
-                renderTabs();
-                renderGrid();
-            });
-        });
+        const data = await res.json();
+        nextPageToken = data.nextPageToken || "";
+
+        return data.items.filter(v => v.id.videoId);
     }
 
-    function renderGrid() {
-        const grid = document.getElementById('videoGrid');
-        const filtered = activeCategory === 'All' 
-            ? videos 
-            : videos.filter(v => v.category === activeCategory);
+    /* Render LIVE */
+    function renderLive(videos) {
+        if (videos.length === 0) return;
 
-        grid.innerHTML = filtered.map(video => `
-            <div class="video-card ${video.id === activeVideo.id ? 'active' : ''}" data-id="${video.id}">
-                <div class="video-card-thumb">
-                    <img src="${getYouTubeThumb(video.id)}" alt="${video.title}">
-                    <div class="play-icon"></div>
+        const section = document.getElementById("live-section");
+        section.innerHTML = `
+            <div class="section-title">🔴 Live Now</div>
+            <div class="grid" id="live-grid"></div>
+        `;
+
+        const grid = document.getElementById("live-grid");
+
+        videos.forEach(video => {
+            const card = document.createElement("div");
+            card.className = "yt-card";
+
+            card.innerHTML = `
+                <div class="thumb-wrapper">
+                    <span class="live-badge">LIVE</span>
+                    <img src="${video.snippet.thumbnails.medium.url}">
                 </div>
-                <div class="video-card-info">
-                    <div class="video-card-title">${video.title}</div>
-                    <div class="video-card-meta">${video.category} • ${video.date}</div>
+                <div class="yt-card-info">
+                    <div class="yt-card-title">${video.snippet.title}</div>
                 </div>
-            </div>
-        `).join('');
+            `;
 
-        grid.querySelectorAll('.video-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const video = videos.find(v => v.id === card.dataset.id);
-                loadVideo(video);
-            });
+            card.onclick = () => {
+                card.innerHTML = `
+                    <iframe src="https://www.youtube.com/embed/${video.id.videoId}?autoplay=1"></iframe>
+                `;
+            };
+
+            grid.appendChild(card);
         });
     }
 
-    document.getElementById('mainPlayer').src = `https://www.youtube.com/embed/${videos[0].id}`;
-    renderTabs();
-    renderGrid();
+    /* Render normal videos */
+    function renderVideos(videos) {
+        let section = document.getElementById("video-section");
+
+        if (!section.innerHTML) {
+            section.innerHTML = `
+                <div class="section-title">Latest Videos</div>
+                <div class="grid" id="video-grid"></div>
+            `;
+        }
+
+        const grid = document.getElementById("video-grid");
+
+        videos.forEach(video => {
+            const card = document.createElement("div");
+            card.className = "yt-card";
+
+            card.innerHTML = `
+                <div class="thumb-wrapper">
+                    <img src="${video.snippet.thumbnails.medium.url}">
+                </div>
+                <div class="yt-card-info">
+                    <div class="yt-card-title">${video.snippet.title}</div>
+                </div>
+            `;
+
+            card.onclick = () => {
+                card.innerHTML = `
+                    <iframe src="https://www.youtube.com/embed/${video.id.videoId}?autoplay=1"></iframe>
+                `;
+            };
+
+            grid.appendChild(card);
+        });
+    }
+
+    /* Show load more button if there are more videos */
+    function updateLoadMore() {
+        const loadMoreBtn = document.getElementById("load-more");
+        if (nextPageToken) {
+            loadMoreBtn.style.display = "block";
+        } else {
+            loadMoreBtn.style.display = "none";
+        }
+    }
+
+    /* INIT */
+    async function init() {
+        try {
+            document.getElementById('loading').style.display = 'none';
+            
+            CHANNEL_ID = await getChannelId();
+
+            const liveVideos = await fetchLiveVideos();
+            renderLive(liveVideos);
+
+            const videos = await fetchVideos();
+            renderVideos(videos);
+            updateLoadMore();
+
+        } catch (err) {
+            console.error(err);
+            document.querySelector('.youtube-container').innerHTML += "<div class='error-message'>Error loading videos. Please check the channel handle and try again.</div>";
+        }
+    }
+
+    /* Load more */
+    document.getElementById("load-more").onclick = async () => {
+        if (!nextPageToken) return;
+
+        const videos = await fetchVideos(nextPageToken);
+        renderVideos(videos);
+        updateLoadMore();
+    };
+
+    init();
 </script>
 
 </body>
