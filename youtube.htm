@@ -468,14 +468,17 @@
 
     // Fetch videos from YouTube RSS feed
     async function fetchVideos() {
-        // Add cache-busting timestamp to get fresh data
-        const timestamp = Date.now();
-        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}&t=${timestamp}`;
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&nojsoncallback=1`;
+        // Use a different RSS to JSON service as fallback
+        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+        
+        console.log('Fetching videos from:', apiUrl);
         
         try {
             const response = await fetch(apiUrl);
             const data = await response.json();
+            
+            console.log('RSS Response:', data);
             
             if (data.status === 'ok' && data.items && data.items.length > 0) {
                 const videos = [];
@@ -501,6 +504,8 @@
                     }
                 });
                 
+                console.log('Parsed videos:', videos);
+                
                 // Sort by publication date (newest first)
                 videos.sort((a, b) => new Date(b.date) - new Date(a.date));
                 
@@ -508,6 +513,7 @@
                 renderVideos(videos);
             } else {
                 // No videos from RSS, try fallback
+                console.log('RSS returned no videos, using fallback');
                 await loadKnownVideos();
             }
         } catch (error) {
