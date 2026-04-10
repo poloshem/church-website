@@ -269,6 +269,25 @@
         .lightbox-prev { left: 20px; }
         .lightbox-next { right: 20px; }
 
+        .gallery-divider {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+        }
+
+        .gallery-divider hr {
+            border: none;
+            border-top: 2px solid #FFA500;
+            margin-bottom: 15px;
+        }
+
+        .gallery-divider h2 {
+            color: #333;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         footer { background: #FFA500; color: white; text-align: center; padding: 20px; }
 
         @media (max-width: 1024px) {
@@ -366,6 +385,11 @@
 </header>
 
 <section class="gallery-section">
+    <div class="gallery-divider">
+        <hr>
+        <h2>Women's April 2026 Conference</h2>
+    </div>
+
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(0)">
             <img src="images/womenconf1.jpeg" alt="Women's Conference">
@@ -494,7 +518,14 @@
                 <p>Special Memories</p>
             </div>
         </div>
+    </div>
 
+    <div class="gallery-divider">
+        <hr>
+        <h2>Worship Sessions</h2>
+    </div>
+
+    <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(16)">
             <img src="images/Congrates.jpeg" alt="Worship Service">
             <div class="overlay">
