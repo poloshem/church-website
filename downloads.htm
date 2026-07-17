@@ -13,6 +13,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         body {
             font-family: 'Agency FB', Arial, sans-serif;
             background: #f6f9ff;
@@ -195,9 +210,11 @@
 </head>
 <body>
 
-<nav class="top-nav">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav class="top-nav" aria-label="Main navigation">
     <div class="logo">
-        <img src="images/favi.png" alt="Church Logo">
+        <img loading="lazy" src="images/favi.png" alt="Church Logo">
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -250,7 +267,7 @@
     <p>Quick access to useful ministry resources and printable materials</p>
 </header>
 
-<div class="container">
+<div class="container" id="main-content">
     <p class="intro">Choose a resource below and download or open it directly from the website.</p>
 
     <div class="downloads-grid">

@@ -14,6 +14,21 @@ html
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         body {
             font-family: 'Agency FB', Arial, sans-serif;
             padding-top: 80px;
@@ -225,10 +240,12 @@ html
 
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- NAVBAR -->
-<nav class="top-nav">
+<nav class="top-nav" aria-label="Main navigation">
     <div class="logo">
-        <img src="images/favi.png" alt="Church Logo">
+        <img loading="lazy" src="images/favi.png" alt="Church Logo">
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -279,10 +296,10 @@ html
     <p>Dedicated servants leading with vision and integrity</p>
 </header>
 
-<div class="container">
+<div class="container" id="main-content">
 
     <div class="leader fade-in">
-        <img src="images/Bishop.jpeg">
+        <img loading="lazy" src="images/Bishop.jpeg">
         <div class="leader-details">
             <h3>Apostle Bishop Ogacho Odera</h3>
             <p><strong>Position:</strong> Apostle</p>
@@ -293,7 +310,7 @@ html
     <hr>
 
     <div class="leader fade-in">
-        <img src="images/Vivian.jpeg">
+        <img loading="lazy" src="images/Vivian.jpeg">
         <div class="leader-details">
             <h3>Vivian Ogacho Odera</h3>
             <p><strong>Position:</strong> Assistant Bishop</p>
@@ -304,7 +321,7 @@ html
     <hr>
 
     <div class="leader fade-in">
-        <img src="images/pastor.png">
+        <img loading="lazy" src="images/pastor.png">
         <div class="leader-details">
             <h3>Mr.George Otieno</h3>
             <p><strong>Position:</strong>Church Pastor</p>
@@ -315,7 +332,7 @@ html
     <hr>
 
     <div class="leader fade-in">
-        <img src="images/MissPastor.jpeg" alt="Mrs. Grace Akinyi - Treasurer" width="120" height="120" loading="lazy">
+        <img loading="lazy" src="images/MissPastor.jpeg" alt="Mrs. Grace Akinyi - Treasurer" width="120" height="120">
         <div class="leader-details">
             <h3>Mrs. Emma Emaculate Otieno</h3>
             <p><strong>Position:</strong> Assitant Pastor</p>
@@ -326,7 +343,7 @@ html
     <hr>
 
     <div class="leader fade-in">
-        <img src="images/assistBishop.png" alt="Mrs. Grace Akinyi - Treasurer" width="120" height="120" loading="lazy">
+        <img loading="lazy" src="images/assistBishop.png" alt="Mrs. Grace Akinyi - Treasurer" width="120" height="120">
         <div class="leader-details">
             <h3>Mrs. Emilly Akinyi</h3>
             <p><strong>Position:</strong> Assistatnt Bishop</p>

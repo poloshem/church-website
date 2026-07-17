@@ -13,6 +13,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         body {
             font-family: 'Agency FB', Arial, sans-serif;
         }
@@ -429,9 +444,11 @@
 
 <body>
 
-<nav class="top-nav">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav class="top-nav" aria-label="Main navigation">
     <div class="logo">
-        <img src="images/favi.png" alt="Church Logo">
+        <img loading="lazy" src="images/favi.png" alt="Church Logo">
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -491,7 +508,7 @@
     </div>
 </header>
 
-<div class="page-title-section">
+<div class="page-title-section" id="main-content">
     <h1>Give & Donate</h1>
     <p>Thank you for your generous support of our ministry. Your contributions help us spread the Gospel and serve our community.</p>
 </div>
@@ -502,7 +519,7 @@
         <h2><span class="icon">🏦</span> Bank Transfer</h2>
         <div class="bank-details">
             <div class="bank-logo">
-                <img src="images/equity.png" alt="Equity Bank Logo">
+                <img loading="lazy" src="images/equity.png" alt="Equity Bank Logo">
             </div>
             <div class="details-content">
                 <div class="detail-row">
@@ -540,7 +557,7 @@
         <!-- M-Pesa Section -->
         <div class="mpesa-section">
         <div class="mpesa-logo">
-            <img src="images/mpesa.png" alt="M-Pesa Logo">
+            <img loading="lazy" src="images/mpesa.png" alt="M-Pesa Logo">
         </div>
         <h2>M-Pesa Paybill</h2>
         <p>Send your donation conveniently via M-Pesa</p>

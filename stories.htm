@@ -12,6 +12,22 @@
 <style>
     /* Reset */
     * { margin:0; padding:0; box-sizing:border-box; }
+
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #0066cc;
+        color: white;
+        padding: 8px;
+        z-index: 10000;
+        text-decoration: none;
+    }
+
+    .skip-link:focus {
+        top: 0;
+    }
+
     body { font-family: Arial, sans-serif; line-height:1.6; background-color:#fff; color:#333; }
 
     /* Navbar */
@@ -89,7 +105,9 @@
 </head>
 <body>
 
-<nav>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Main navigation">
     <ul>
         <li><a href="index.htm">Home</a></li>
         <li><a href="about.htm">About Us</a></li>
@@ -99,7 +117,7 @@
     </ul>
 </nav>
 
-<section class="hero">
+<section class="hero" id="main-content">
     <h1>Kids Content</h1>
     <p>Fun, safe, and educational content for our little ones!</p>
 </section>

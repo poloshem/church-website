@@ -13,6 +13,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         :root {
             --navbar-height: 80px;
         }
@@ -252,9 +267,11 @@
 
 <body>
 
-<nav class="top-nav">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav class="top-nav" aria-label="Main navigation">
     <div class="logo">
-        <img src="images/favi.png" alt="Church Logo">
+        <img loading="lazy" src="images/favi.png" alt="Church Logo">
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -312,7 +329,7 @@
     <p>Download church publications and resources</p>
 </header>
 
-<div class="publications-container">
+<div class="publications-container" id="main-content">
     <a href="sermons.htm" class="back-link">&larr; Back to Sermons Library</a>
 
     <div class="publications-list">

@@ -13,6 +13,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         :root {
             --navbar-height: 80px;
         }
@@ -135,10 +150,12 @@
 
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- NAVBAR -->
-<nav class="top-nav">
+<nav class="top-nav" aria-label="Main navigation">
     <div class="logo">
-        <img src="images/favi.png" alt="Church Logo">
+        <img loading="lazy" src="images/favi.png" alt="Church Logo">
     </div>
 
     <div class="menu">
@@ -157,7 +174,7 @@
 </header>
 
 <!-- INTRO -->
-<div class="section">
+<div class="section" id="main-content">
     <h2>Our Vision</h2>
     <p>
         Our Mission and Outreach ministry exists to spread the Gospel, serve communities,
@@ -215,22 +232,22 @@
 
     <div class="gallery-grid">
         <div class="gallery-item">
-            <img src="images/charity.jpeg" alt="Community Outreach">
+            <img loading="lazy" src="images/charity.jpeg" alt="Community Outreach">
             <p>Community Outreach Program</p>
         </div>
 
         <div class="gallery-item">
-            <img src="images/event1.jpeg" alt="Church Event">
+            <img loading="lazy" src="images/event1.jpeg" alt="Church Event">
             <p>Church Event</p>
         </div>
 
         <div class="gallery-item">
-            <img src="images/youth.jpeg" alt="Youth Ministry">
+            <img loading="lazy" src="images/youth.jpeg" alt="Youth Ministry">
             <p>Youth Ministry</p>
         </div>
 
         <div class="gallery-item">
-            <img src="images/Children1.jpeg" alt="Children's Ministry">
+            <img loading="lazy" src="images/Children1.jpeg" alt="Children's Ministry">
             <p>Children's Ministry</p>
         </div>
     </div>

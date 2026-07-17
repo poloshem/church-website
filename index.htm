@@ -14,6 +14,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         :root {
             --navbar-height: 130px;
         }
@@ -313,6 +328,33 @@
 
         .carousel-slide.active { display: block; }
 
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+        }
+
+        .carousel-prev { left: 10px; }
+        .carousel-next { right: 10px; }
+        .carousel-pause {
+            top: auto;
+            bottom: 10px;
+            right: 10px;
+            transform: none;
+            font-size: 16px;
+            padding: 8px 12px;
+        }
+
+        .carousel-btn:hover { background: rgba(0,0,0,0.8); }
+
         /* Training Carousel */
         .training-carousel {
             position: relative;
@@ -407,9 +449,11 @@
 
 <body>
 
-<nav class="top-nav">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav class="top-nav" aria-label="Main navigation">
     <div class="logo">
-        <img src="images/favi.png" alt="Church Logo">
+         <img loading="lazy" src="images/favi.png" alt="Church Logo">
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -481,22 +525,22 @@
  <div class="carousel">
      <div class="carousel-container" id="carousel-container">
          <div class="carousel-slide active">
-             <img src="images/Congrates.jpeg" alt="Church congregation celebrating together">
+              <img loading="lazy" src="images/Congrates.jpeg" alt="Church congregation celebrating together">
          </div>
          <div class="carousel-slide">
-             <img src="images/worshiper.jpeg" alt="Worshiper lifting hands in praise">
+              <img loading="lazy" src="images/worshiper.jpeg" alt="Worshiper lifting hands in praise">
          </div>
          <div class="carousel-slide">
-             <img src="images/Worshippers.jpeg" alt="Church worshippers gathered for service">
+              <img loading="lazy" src="images/Worshippers.jpeg" alt="Church worshippers gathered for service">
          </div>
          <div class="carousel-slide">
-             <img src="images/Olori .jpeg" alt="Special church service with leaders">
+              <img loading="lazy" src="images/Olori .jpeg" alt="Special church service with leaders">
          </div>
           <div class="carousel-slide">
-             <img src="images/Miles.jpeg" alt="Youth fellowship and praise session">
+              <img loading="lazy" src="images/Miles.jpeg" alt="Youth fellowship and praise session">
          </div>
           <div class="carousel-slide">
-             <img src="images/Children1.jpeg" alt="Children participating in kids church program">
+              <img loading="lazy" src="images/Children1.jpeg" alt="Children participating in kids church program">
          </div>
          <div class="carousel-slide" style="display: flex; align-items: center; justify-content: center; background: #fff;">
              <div style="text-align: center; padding: 40px;">
@@ -506,9 +550,13 @@
                      beginning at 12 Noon
                  </p>
              </div>
-         </div>
+          </div>
      </div>
- </div>
+
+  <button class="carousel-btn carousel-prev" aria-label="Previous slide">&#10094;</button>
+  <button class="carousel-btn carousel-next" aria-label="Next slide">&#10095;</button>
+  <button class="carousel-btn carousel-pause" id="carouselPause" aria-label="Pause carousel">&#10074;&#10074;</button>
+  </div>
 
 <!-- Training Carousel -->
 <div class="training-carousel">
@@ -518,9 +566,9 @@
             <div class="date-badge">22nd - 26th September 2026</div>
             <h3>5 Days Church Leadership And Financial Stewardship Training</h3>
             <p>A comprehensive training program for church leaders focused on leadership principles and financial stewardship excellence.</p>
-        </div>
     </div>
 </div>
+
 
 <nav class="nav-bar">
     <button onclick="window.location.href='payment.htm'">Support Outreach Ministries</button>
@@ -539,7 +587,7 @@
 <section class="upcoming-events">
     <div class="events-grid">
         <div class="event-card">
-            <img src="images/sunday.jpeg" alt="Sunday worship service">
+             <img loading="lazy" src="images/sunday.jpeg" alt="Sunday worship service">
             <div class="content">
                 <h3>Sunday Service</h3>
                 <p>Join us for our main Sunday worship service...</p>
@@ -548,7 +596,7 @@
         </div>
 
         <div class="event-card">
-            <img src="images/charity.jpeg" alt="Community outreach program">
+             <img loading="lazy" src="images/charity.jpeg" alt="Community outreach program">
             <div class="content">
                 <h3>Community Outreach</h3>
                 <p>Be part of our community give-back programs...</p>
@@ -557,7 +605,7 @@
         </div>
 
         <div class="event-card">
-            <img src="images/Bishops.jpeg" alt="Church celebration event">
+             <img loading="lazy" src="images/Bishops.jpeg" alt="Church celebration event">
             <div class="content">
                 <h3>Celebration Events</h3>
                 <p>Join us for special celebration events...</p>
@@ -566,7 +614,7 @@
         </div>
 
         <div class="event-card">
-            <img src="images/youth.jpeg" alt="Youth programs and activities">
+             <img loading="lazy" src="images/youth.jpeg" alt="Youth programs and activities">
             <div class="content">
                 <h3>Youth Programs</h3>
                 <p>Special programs designed for our youth...</p>
@@ -696,11 +744,43 @@
     // Carousel functionality (existing)
     const slides = document.querySelectorAll(".carousel-slide");
     let currentIndex = 0;
-    setInterval(() => {
+    let carouselInterval = setInterval(() => {
         slides[currentIndex].classList.remove("active");
         currentIndex = (currentIndex + 1) % slides.length;
         slides[currentIndex].classList.add("active");
     }, 3000);
+
+    const pauseBtn = document.getElementById("carouselPause");
+    let isPaused = false;
+
+    pauseBtn.addEventListener("click", () => {
+        isPaused = !isPaused;
+        if (isPaused) {
+            clearInterval(carouselInterval);
+            pauseBtn.innerHTML = "&#9654;";
+            pauseBtn.setAttribute("aria-label", "Play carousel");
+        } else {
+            carouselInterval = setInterval(() => {
+                slides[currentIndex].classList.remove("active");
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add("active");
+            }, 3000);
+            pauseBtn.innerHTML = "&#10074;&#10074;";
+            pauseBtn.setAttribute("aria-label", "Pause carousel");
+        }
+    });
+
+    document.querySelector(".carousel-prev").addEventListener("click", () => {
+        slides[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        slides[currentIndex].classList.add("active");
+    });
+
+    document.querySelector(".carousel-next").addEventListener("click", () => {
+        slides[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add("active");
+    });
 
     // Training Carousel functionality
     const trainingSlides = document.querySelectorAll(".training-slide");

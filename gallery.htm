@@ -13,6 +13,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         :root {
             --navbar-height: 130px;
         }
@@ -333,9 +348,11 @@
 
 <body>
 
-<nav class="top-nav">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav class="top-nav" aria-label="Main navigation">
     <div class="logo">
-        <img src="images/favi.png" alt="Church Logo">
+        <img loading="lazy" src="images/favi.png" alt="Church Logo">
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -388,7 +405,7 @@
     <p>Capturing moments of worship, fellowship, and community</p>
 </header>
 
-<section class="gallery-section">
+<section class="gallery-section" id="main-content">
     <div class="gallery-divider">
         <hr>
         <h2>Inaguration of Life Spring Dominion Education Centre Held on 8th June, 2026</h2>
@@ -396,7 +413,7 @@
 
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(0)">
-            <img src="images/sch1.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
+            <img loading="lazy" src="images/sch1.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
             <div class="overlay">
                 <h3>Inauguration of Life Spring Dominion Education Centre</h3>
                 <p>Inaguration Day - 8th June, 2026</p>
@@ -404,7 +421,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(1)">
-            <img src="images/sch2.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
+            <img loading="lazy" src="images/sch2.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
             <div class="overlay">
                 <h3>Inauguration of Life Spring Dominion Education Centre</h3>
                 <p>Inaguration Day - 8th June, 2026</p>
@@ -412,7 +429,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(2)">
-            <img src="images/sch3.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
+            <img loading="lazy" src="images/sch3.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
             <div class="overlay">
                 <h3>Inauguration of Life Spring Dominion Education Centre</h3>
                 <p>Inaguration Day - 8th June, 2026</p>
@@ -420,7 +437,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(3)">
-            <img src="images/sch4.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
+            <img loading="lazy" src="images/sch4.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
             <div class="overlay">
                 <h3>Inauguration of Life Spring Dominion Education Centre</h3>
                 <p>Inaguration Day - 8th June, 2026</p>
@@ -428,7 +445,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(4)">
-            <img src="images/sch5.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
+            <img loading="lazy" src="images/sch5.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
             <div class="overlay">
                 <h3>Inauguration of Life Spring Dominion Education Centre</h3>
                 <p>Inaguration Day - 8th June, 2026</p>
@@ -436,7 +453,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(5)">
-            <img src="images/sch6.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
+            <img loading="lazy" src="images/sch6.jpeg" alt="Inauguration of Life Spring Dominion Education Centre">
             <div class="overlay">
                 <h3>Inauguration of Life Spring Dominion Education Centre</h3>
                 <p>Inaguration Day - 8th June, 2026</p>
@@ -451,7 +468,7 @@
 
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(6)">
-            <img src="images/p1.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p1.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -459,7 +476,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(7)">
-            <img src="images/p2.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p2.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -467,7 +484,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(8)">
-            <img src="images/p3.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p3.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -475,7 +492,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(9)">
-            <img src="images/p4.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p4.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -483,7 +500,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(10)">
-            <img src="images/p5.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p5.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -491,7 +508,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(11)">
-            <img src="images/p6.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p6.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -499,7 +516,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(12)">
-            <img src="images/p7.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p7.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -507,7 +524,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(13)">
-            <img src="images/p8.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p8.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -515,7 +532,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(14)">
-            <img src="images/p9.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p9.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -523,7 +540,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(15)">
-            <img src="images/p10.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p10.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -531,7 +548,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(16)">
-            <img src="images/p11.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p11.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -539,7 +556,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(17)">
-            <img src="images/p12.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p12.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -547,7 +564,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(18)">
-            <img src="images/p13.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p13.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -555,7 +572,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(19)">
-            <img src="images/p14.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p14.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -563,7 +580,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(20)">
-            <img src="images/p15.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
+            <img loading="lazy" src="images/p15.jpeg" alt="A visit to Nyangiela Polie station 17th May, 2026">
             <div class="overlay">
                 <h3>A visit to Nyangiela Polie station 17th May, 2026</h3>
                 <p>A visit to Nyangiela Polie station 17th May, 2026</p>
@@ -578,7 +595,7 @@
 
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(21)">
-            <img src="images/build.jpeg" alt="Administration Building">
+            <img loading="lazy" src="images/build.jpeg" alt="Administration Building">
             <div class="overlay">
                 <h3>Ongoing Church Administration Building Project</h3>
                 <p>Administration building</p>
@@ -586,7 +603,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(22)">
-            <img src="images/build1.jpeg" alt="Administration Building">
+            <img loading="lazy" src="images/build1.jpeg" alt="Administration Building">
             <div class="overlay">
                 <h3>Ongoing Church Administration Building Project</h3>
                 <p>Administration building</p>
@@ -594,7 +611,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(23)">
-            <img src="images/build2.jpeg" alt="Administration Building">
+            <img loading="lazy" src="images/build2.jpeg" alt="Administration Building">
             <div class="overlay">
                 <h3>Ongoing Church Administration Building Project</h3>
                 <p>Administration building</p>
@@ -602,7 +619,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(24)">
-            <img src="images/build3.jpeg" alt="Administration Building">
+            <img loading="lazy" src="images/build3.jpeg" alt="Administration Building">
             <div class="overlay">
                 <h3>Ongoing Church Administration Building Project</h3>
                 <p>Administration building</p>
@@ -610,7 +627,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(25)">
-            <img src="images/build4.jpeg" alt="Administration Building">
+            <img loading="lazy" src="images/build4.jpeg" alt="Administration Building">
             <div class="overlay">
                 <h3>Ongoing Church Administration Building Project</h3>
                 <p>Administration building</p>
@@ -625,7 +642,7 @@
 
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(26)">
-            <img src="images/youth1.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth1.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -633,7 +650,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(21)">
-            <img src="images/youth2.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth2.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -641,7 +658,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(22)">
-            <img src="images/youth3.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth3.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -649,7 +666,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(23)">
-            <img src="images/youth4.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth4.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -657,7 +674,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(24)">
-            <img src="images/youth5.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth5.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -665,7 +682,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(25)">
-            <img src="images/youth6.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth6.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -673,7 +690,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(26)">
-            <img src="images/youth7.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth7.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -681,7 +698,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(27)">
-            <img src="images/youth9.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth9.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -689,7 +706,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(28)">
-            <img src="images/youth10.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth10.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -697,7 +714,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(29)">
-            <img src="images/youth 11.jpeg" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth 11.jpeg" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -705,7 +722,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(30)">
-            <img src="images/youth12.PNG" alt="Youth Retreat">
+            <img loading="lazy" src="images/youth12.PNG" alt="Youth Retreat">
             <div class="overlay">
                 <h3>Youth Retreat 21st of April 2026</h3>
                 <p>21st of April 2026</p>
@@ -720,7 +737,7 @@
 
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(31)">
-            <img src="images/womenconf1.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf1.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Faith and Fellowship</p>
@@ -728,7 +745,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(32)">
-            <img src="images/womenconf2.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf2.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Day 1</p>
@@ -736,7 +753,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(33)">
-            <img src="images/womenconf4.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf4.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Day 2</p>
@@ -744,7 +761,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(34)">
-            <img src="images/womenconf5.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf5.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Praise and Worship</p>
@@ -752,7 +769,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(35)">
-            <img src="images/womenconf6.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf6.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Together in Unity</p>
@@ -760,7 +777,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(36)">
-            <img src="images/womenconf7.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf7.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p> fellowship</p>
@@ -768,7 +785,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(37)">
-            <img src="images/womenconf8.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf8.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Sharing God's Word</p>
@@ -776,7 +793,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(38)">
-            <img src="images/womenconf9.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf9.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Praise Session</p>
@@ -784,7 +801,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(39)">
-            <img src="images/womenconf10.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf10.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Worship Moment</p>
@@ -792,7 +809,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(40)">
-            <img src="images/womenconf11.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf11.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Prayer Time</p>
@@ -800,7 +817,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(41)">
-            <img src="images/womenconf12.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf12.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Scripture Reading</p>
@@ -808,7 +825,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(42)">
-            <img src="images/womenconf13.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf13.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Worship Team</p>
@@ -816,7 +833,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(43)">
-            <img src="images/womenconf14.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf14.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Closing Day</p>
@@ -824,7 +841,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(44)">
-            <img src="images/womenconf15.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf15.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Celebration</p>
@@ -832,7 +849,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(45)">
-            <img src="images/womenconf16.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womenconf16.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Group Photo</p>
@@ -840,7 +857,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(46)">
-            <img src="images/womencon3.jpeg" alt="Women's Conference">
+            <img loading="lazy" src="images/womencon3.jpeg" alt="Women's Conference">
             <div class="overlay">
                 <h3>Women's Conference</h3>
                 <p>Special Memories</p>
@@ -855,7 +872,7 @@
 
     <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(47)">
-            <img src="images/Congrates.jpeg" alt="Worship Service">
+            <img loading="lazy" src="images/Congrates.jpeg" alt="Worship Service">
             <div class="overlay">
                 <h3>Worship Celebration</h3>
                 <p>Sunday Service</p>
@@ -863,7 +880,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(48)">
-            <img src="images/worshiper.jpeg" alt="Worship">
+            <img loading="lazy" src="images/worshiper.jpeg" alt="Worship">
             <div class="overlay">
                 <h3>Praise & Worship</h3>
                 <p>Lifting up holy hands</p>
@@ -871,7 +888,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(49)">
-            <img src="images/Worshippers.jpeg" alt="Congregation">
+            <img loading="lazy" src="images/Worshippers.jpeg" alt="Congregation">
             <div class="overlay">
                 <h3>Congregation</h3>
                 <p>Together in unity</p>
@@ -879,7 +896,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(50)">
-            <img src="images/Olori .jpeg" alt="Special Service">
+            <img loading="lazy" src="images/Olori .jpeg" alt="Special Service">
             <div class="overlay">
                 <h3>Special Service</h3>
                 <p>Special moments</p>
@@ -887,7 +904,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(51)">
-            <img src="images/Miles.jpeg" alt="Youth">
+            <img loading="lazy" src="images/Miles.jpeg" alt="Youth">
             <div class="overlay">
                 <h3>Youth Fellowship</h3>
                 <p>Building future leaders</p>
@@ -895,7 +912,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(52)">
-            <img src="images/Children1.jpeg" alt="Children">
+            <img loading="lazy" src="images/Children1.jpeg" alt="Children">
             <div class="overlay">
                 <h3>Kids Church</h3>
                 <p>Training up the little ones</p>
@@ -903,7 +920,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(53)">
-            <img src="images/sunday.jpeg" alt="Sunday Service">
+            <img loading="lazy" src="images/sunday.jpeg" alt="Sunday Service">
             <div class="overlay">
                 <h3>Sunday Celebration</h3>
                 <p>Weekly worship</p>
@@ -911,7 +928,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(54)">
-            <img src="images/charity.jpeg" alt="Outreach">
+            <img loading="lazy" src="images/charity.jpeg" alt="Outreach">
             <div class="overlay">
                 <h3>Community Outreach</h3>
                 <p>Serving with love</p>
@@ -919,7 +936,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(55)">
-            <img src="images/Bishops.jpeg" alt="Leadership">
+            <img loading="lazy" src="images/Bishops.jpeg" alt="Leadership">
             <div class="overlay">
                 <h3>Church Leadership</h3>
                 <p>Shepherding the flock</p>
@@ -927,7 +944,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(56)">
-            <img src="images/youth.jpeg" alt="Youth Programs">
+            <img loading="lazy" src="images/youth.jpeg" alt="Youth Programs">
             <div class="overlay">
                 <h3>Youth Programs</h3>
                 <p>Empowering the next generation</p>
@@ -935,7 +952,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(57)">
-            <img src="images/ofice 1.jpeg" alt="Office">
+            <img loading="lazy" src="images/ofice 1.jpeg" alt="Office">
             <div class="overlay">
                 <h3>Church Office</h3>
                 <p>Our administrative office</p>
@@ -943,7 +960,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(58)">
-            <img src="images/podoim.jpeg" alt="Podium">
+            <img loading="lazy" src="images/podoim.jpeg" alt="Podium">
             <div class="overlay">
                 <h3>Podium</h3>
                 <p>Speaking the word</p>
@@ -951,7 +968,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(59)">
-            <img src="images/office 3.jpeg" alt="Office">
+            <img loading="lazy" src="images/office 3.jpeg" alt="Office">
             <div class="overlay">
                 <h3>Office Space</h3>
                 <p>Administrative area</p>
@@ -959,7 +976,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(60)">
-            <img src="images/airport.jpeg" alt="Airport">
+            <img loading="lazy" src="images/airport.jpeg" alt="Airport">
             <div class="overlay">
                 <h3>Airport</h3>
                 <p>Traveling for missions</p>
@@ -967,7 +984,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(61)">
-            <img src="images/pastor.png" alt="Pastor">
+            <img loading="lazy" src="images/pastor.png" alt="Pastor">
             <div class="overlay">
                 <h3>Our Pastor</h3>
                 <p>Shepherding the flock</p>
@@ -975,7 +992,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(62)">
-            <img src="images/assistBishop.png" alt="Assistant Bishop">
+            <img loading="lazy" src="images/assistBishop.png" alt="Assistant Bishop">
             <div class="overlay">
                 <h3>Assistant Bishop</h3>
                 <p>Supporting the ministry</p>
@@ -983,7 +1000,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(63)">
-            <img src="images/MissPastor.jpeg" alt="Mrs Pastor">
+            <img loading="lazy" src="images/MissPastor.jpeg" alt="Mrs Pastor">
             <div class="overlay">
                 <h3>Mrs Pastor</h3>
                 <p>Pastoral spouse</p>
@@ -991,7 +1008,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(64)">
-            <img src="images/Vivian.jpeg" alt="Vivian">
+            <img loading="lazy" src="images/Vivian.jpeg" alt="Vivian">
             <div class="overlay">
                 <h3>Vivian</h3>
                 <p>Church member</p>
@@ -999,7 +1016,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(65)">
-            <img src="images/Bishop.jpeg" alt="Bishop">
+            <img loading="lazy" src="images/Bishop.jpeg" alt="Bishop">
             <div class="overlay">
                 <h3>Bishop</h3>
                 <p>Church head</p>
@@ -1007,7 +1024,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(66)">
-            <img src="images/Children3.jpeg" alt="Children">
+            <img loading="lazy" src="images/Children3.jpeg" alt="Children">
             <div class="overlay">
                 <h3>Kids Ministry</h3>
                 <p>Children in worship</p>
@@ -1015,7 +1032,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(67)">
-            <img src="images/vera.jpeg" alt="Vera">
+            <img loading="lazy" src="images/vera.jpeg" alt="Vera">
             <div class="overlay">
                 <h3>Vera</h3>
                 <p>Worship leader</p>
@@ -1023,7 +1040,7 @@
         </div>
 
         <div class="gallery-item" onclick="openLightbox(68)">
-            <img src="images/event1.jpeg" alt="Event">
+            <img loading="lazy" src="images/event1.jpeg" alt="Event">
             <div class="overlay">
                 <h3>Special Event</h3>
                 <p>Church event</p>
@@ -1035,7 +1052,7 @@
 <div class="lightbox" id="lightbox">
     <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
     <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
-    <img id="lightbox-img" src="" alt="Gallery Image">
+    <img loading="lazy" id="lightbox-img" src="" alt="Gallery Image">
     <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#10095;</span>
 </div>
 

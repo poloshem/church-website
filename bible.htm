@@ -13,6 +13,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         :root {
             --navbar-height: 80px;
         }
@@ -182,10 +197,12 @@
 
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- NAVBAR -->
-<nav class="top-nav">
+<nav class="top-nav" aria-label="Main navigation">
     <div class="logo">
-        <img src="images/favi.png" alt="Church Logo">
+        <img loading="lazy" src="images/favi.png" alt="Church Logo">
     </div>
 
     <div class="hamburger" id="hamburger">
@@ -245,7 +262,7 @@
 </header>
 
 <!-- EMBEDDED BIBLE VIEWER -->
-<div class="bible-container">
+<div class="bible-container" id="main-content">
     <h2>Bible Reader</h2>
 
     <iframe 
